@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/generate_advanced"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/advanced_layout_clubs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/line2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/advanced_layout_first_club"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/advanced_logo_first_club"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/club_default"
+                tools:srcCompat="@drawable/club_default" />
+
+            <TextView
+                android:id="@+id/advanced_name_first_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/advanced_division_first_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/advanced_country_first_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_strength_first_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
+
+                <ImageView
+                    android:id="@+id/advanced_first_club_star_1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+
+                <ImageView
+                    android:id="@+id/advanced_first_club_star_2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+
+                <ImageView
+                    android:id="@+id/advanced_first_club_star_3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+
+                <ImageView
+                    android:id="@+id/advanced_first_club_star_4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+
+                <ImageView
+                    android:id="@+id/advanced_first_club_star_5"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/advanced_sex_image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            tools:srcCompat="@android:color/transparent" />
+
+        <LinearLayout
+            android:id="@+id/advanced_layout_second_club"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/advanced_logo_second_club"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/club_default"
+                tools:srcCompat="@drawable/club_default" />
+
+            <TextView
+                android:id="@+id/advanced_name_second_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/advanced_division_second_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/advanced_country_second_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_strength_second_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
+
+                <ImageView
+                    android:id="@+id/advanced_second_club_star_1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+
+                <ImageView
+                    android:id="@+id/advanced_second_club_star_2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+
+                <ImageView
+                    android:id="@+id/advanced_second_club_star_3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+
+                <ImageView
+                    android:id="@+id/advanced_second_club_star_4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+
+                <ImageView
+                    android:id="@+id/advanced_second_club_star_5"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/star_empty" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/advanced_line2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#2e50be"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advanced_layout_clubs" />
+
+    <LinearLayout
+        android:id="@+id/advanced_sex_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advanced_line2">
+
+        <RadioButton
+            android:id="@+id/advanced_sex_man_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Man"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/advanced_sex_both_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="All"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/advanced_sex_woman_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Woman"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/advanced_layout_club_strength"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advanced_sex_choice">
+
+        <LinearLayout
+            android:id="@+id/advanced_layout_first_club_strength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line2">
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_first_club_minimum_strength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/advanced_layout_first_club_minimum_strength_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/MINIMUM_STRENGTH"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/advanced_layout_first_club_minimum_strength_stars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_minimum_strength_star_1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_half_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_minimum_strength_star_2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_empty" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_minimum_strength_star_3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_empty" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_minimum_strength_star_4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_empty" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_minimum_strength_star_5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_empty" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_first_club_maximum_strength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/advanced_layout_first_club_maximum_strength_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/MAXIMUM_STRENGTH"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/advanced_layout_first_club_maximum_strength_stars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_maximum_strength_star_1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_maximum_strength_star_2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_maximum_strength_star_3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_maximum_strength_star_4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_first_club_maximum_strength_star_5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/advanced_layout_second_club_strength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line2">
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_second_club_minimum_strength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/advanced_layout_second_club_minimum_strength_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/MINIMUM_STRENGTH"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/advanced_layout_second_club_minimum_strength_stars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_minimum_strength_star_1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_half_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_minimum_strength_star_2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_empty" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_minimum_strength_star_3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_empty" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_minimum_strength_star_4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_empty" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_minimum_strength_star_5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_empty" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_second_club_maximum_strength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/advanced_layout_second_club_maximum_strength_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/MAXIMUM_STRENGTH"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/advanced_layout_second_club_maximum_strength_stars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_maximum_strength_star_1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_maximum_strength_star_2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_maximum_strength_star_3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_maximum_strength_star_4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+
+                    <ImageView
+                        android:id="@+id/advanced_layout_second_club_maximum_strength_star_5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_full" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/advanced_layout_club_filter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/advanced_game_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advanced_layout_club_strength">
+
+        <LinearLayout
+            android:id="@+id/advanced_layout_first_club_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_first_club_country_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/advanced_layout_first_club_text_country_fiilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/Country"
+                    android:textColor="@color/white" />
+
+                <Spinner
+                    android:id="@+id/advanced_layout_first_club_spinner_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:popupBackground="#1c1c27" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_first_club_division_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/advanced_layout_first_club_text_division_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/Division"
+                    android:textColor="@color/white" />
+
+                <Spinner
+                    android:id="@+id/advanced_layout_first_club_spinner_division"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:popupBackground="#1c1c27" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/advanced_layout_second_club_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_second_club_country_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/advanced_layout_second_club_text_country_fiilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/Country"
+                    android:textColor="@color/white" />
+
+                <Spinner
+                    android:id="@+id/advanced_layout_second_club_spinner_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:popupBackground="#1c1c27" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/advanced_layout_second_club_division_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/advanced_layout_second_club_text_division_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/Division"
+                    android:textColor="@color/white" />
+
+                <Spinner
+                    android:id="@+id/advanced_layout_second_club_spinner_division"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:popupBackground="#1c1c27" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/advanced_generate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#2e50be"
+        android:text="@string/GENERATE_MATCH"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/advanced_game_logo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/advanced_generate_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/advanced_generate_button"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/fc25_icon" />
+
+    <ImageView
+        android:id="@+id/advanced_filter"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/advanced_generate_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/advanced_generate_button"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/filter_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,109 @@
+<resources>
+
+    <!-- Default values -->
+
+    <string name="app_name">FC Match Generator</string>
+    <string name="Choose_game">Choose your game!</string>
+    <string name="MINIMUM_STRENGTH">MINIMUM STRENGTH</string>
+    <string name="MAXIMUM_STRENGTH">MAXIMUM STRENGTH</string>
+    <string name="Country">Country</string>
+    <string name="Division">Division</string>
+    <string name="GENERATE_MATCH">GENERATE MATCH</string>
+    <string name="All_countries">All countries</string>
+    <string name="All_divisions">All divisions</string>
+    <string name="Not_found">Not found</string>
+    <string name="International">International</string>
+    <string name="Man">Man</string>
+    <string name="Woman">Woman</string>
+    <string name="All_sex">All</string>
+    <string name="InAppUpdateTag">InAppUpdate</string>
+    <string name="InAppUpdateMsg">"Update flow failed! Result code: </string>
+
+
+    <!-- MinMaxStrengthStar name -->
+
+    <string name="maximumStrengthStar1">maximumStrengthStar1</string>
+    <string name="maximumStrengthStar2">maximumStrengthStar2</string>
+    <string name="maximumStrengthStar3">maximumStrengthStar3</string>
+    <string name="maximumStrengthStar4">maximumStrengthStar4</string>
+    <string name="maximumStrengthStar5">maximumStrengthStar5</string>
+
+    <string name="minimumStrengthStar1">minimumStrengthStar1</string>
+    <string name="minimumStrengthStar2">minimumStrengthStar2</string>
+    <string name="minimumStrengthStar3">minimumStrengthStar3</string>
+    <string name="minimumStrengthStar4">minimumStrengthStar4</string>
+    <string name="minimumStrengthStar5">minimumStrengthStar5</string>
+
+    <!-- json files name -->
+
+    <string name="clubs22.json">clubs22.json</string>
+    <string name="clubs23.json">clubs23.json</string>
+    <string name="clubs24.json">clubs24.json</string>
+    <string name="clubs25.json">clubs25.json</string>
+
+    <!-- json object name -->
+    <string name="name">name</string>
+    <string name="logoId">logoId</string>
+    <string name="drawable">drawable</string>
+    <string name="country">country</string>
+    <string name="division">division</string>
+    <string name="strength">strength</string>
+    <string name="sex">sex</string>
+
+    <!-- first/second club star name -->
+
+    <string name="firstClubStar1">firstClubStar1</string>
+    <string name="firstClubStar2">firstClubStar2</string>
+    <string name="firstClubStar3">firstClubStar3</string>
+    <string name="firstClubStar4">firstClubStar4</string>
+    <string name="firstClubStar5">firstClubStar5</string>
+
+    <string name="secondClubStar1">secondClubStar1</string>
+    <string name="secondClubStar2">secondClubStar2</string>
+    <string name="secondClubStar3">secondClubStar3</string>
+    <string name="secondClubStar4">secondClubStar4</string>
+    <string name="secondClubStar5">secondClubStar5</string>
+
+    <!-- advanced first/second club star name -->
+
+    <string name="advancedLayoutFirstClubMinimumStrengthStar1">advancedLayoutFirstClubMinimumStrengthStar1</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar2">advancedLayoutFirstClubMinimumStrengthStar2</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar3">advancedLayoutFirstClubMinimumStrengthStar3</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar4">advancedLayoutFirstClubMinimumStrengthStar4</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar5">advancedLayoutFirstClubMinimumStrengthStar5</string>
+
+    <string name="advancedLayoutFirstClubMaximumStrengthStar1">advancedLayoutFirstClubMaximumStrengthStar1</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar2">advancedLayoutFirstClubMaximumStrengthStar2</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar3">advancedLayoutFirstClubMaximumStrengthStar3</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar4">advancedLayoutFirstClubMaximumStrengthStar4</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar5">advancedLayoutFirstClubMaximumStrengthStar5</string>
+
+    <string name="advancedLayoutSecondClubMinimumStrengthStar1">advancedLayoutSecondClubMinimumStrengthStar1</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar2">advancedLayoutSecondClubMinimumStrengthStar2</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar3">advancedLayoutSecondClubMinimumStrengthStar3</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar4">advancedLayoutSecondClubMinimumStrengthStar4</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar5">advancedLayoutSecondClubMinimumStrengthStar5</string>
+
+    <string name="advancedLayoutSecondClubMaximumStrengthStar1">advancedLayoutSecondClubMaximumStrengthStar1</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar2">advancedLayoutSecondClubMaximumStrengthStar2</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar3">advancedLayoutSecondClubMaximumStrengthStar3</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar4">advancedLayoutSecondClubMaximumStrengthStar4</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar5">advancedLayoutSecondClubMaximumStrengthStar5</string>
+
+    <string name="advancedFirstClubStar1">advancedFirstClubStar1</string>
+    <string name="advancedFirstClubStar2">advancedFirstClubStar2</string>
+    <string name="advancedFirstClubStar3">advancedFirstClubStar3</string>
+    <string name="advancedFirstClubStar4">advancedFirstClubStar4</string>
+    <string name="advancedFirstClubStar5">advancedFirstClubStar5</string>
+
+    <string name="advancedSecondClubStar1">advancedSecondClubStar1</string>
+    <string name="advancedSecondClubStar2">advancedSecondClubStar2</string>
+    <string name="advancedSecondClubStar3">advancedSecondClubStar3</string>
+    <string name="advancedSecondClubStar4">advancedSecondClubStar4</string>
+    <string name="advancedSecondClubStar5">advancedSecondClubStar5</string>
+
+
+
+
+
+</resources>
