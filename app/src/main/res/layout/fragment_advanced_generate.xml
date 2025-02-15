@@ -15,7 +15,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/line2"
+        app:layout_constraintBottom_toTopOf="@+id/advanced_line2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -34,7 +34,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/club_default"
-                tools:srcCompat="@drawable/club_default" />
+                tools:srcCompat="@drawable/club_default"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/advanced_name_first_club"
@@ -76,35 +77,40 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/advanced_first_club_star_2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/advanced_first_club_star_3"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/advanced_first_club_star_4"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/advanced_first_club_star_5"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
         </LinearLayout>
 
@@ -114,6 +120,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_weight="0"
+            tools:ignore="ContentDescription,ImageContrastCheck"
             tools:srcCompat="@android:color/transparent" />
 
         <LinearLayout
@@ -132,6 +139,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/club_default"
+                tools:ignore="ContentDescription,ImageContrastCheck"
                 tools:srcCompat="@drawable/club_default" />
 
             <TextView
@@ -174,35 +182,40 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/advanced_second_club_star_2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/advanced_second_club_star_3"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/advanced_second_club_star_4"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/advanced_second_club_star_5"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/star_empty" />
+                    app:srcCompat="@drawable/star_empty"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
         </LinearLayout>
 
@@ -244,7 +257,7 @@
             android:layout_marginEnd="35dp"
             android:layout_weight="1"
             android:checked="true"
-            android:text="All"
+            android:text="@string/All_sex"
             android:textColor="@color/white" />
 
         <RadioButton
@@ -264,19 +277,21 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advanced_sex_choice">
+        app:layout_constraintTop_toBottomOf="@+id/advanced_sex_choice"
+        tools:ignore="DisableBaselineAlignment">
 
         <LinearLayout
             android:id="@+id/advanced_layout_first_club_strength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:paddingTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line2">
+            app:layout_constraintTop_toBottomOf="@+id/line2"
+            tools:ignore="InefficientWeight">
 
             <LinearLayout
                 android:id="@+id/advanced_layout_first_club_minimum_strength"
@@ -307,35 +322,40 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_half_full" />
+                        app:srcCompat="@drawable/star_half_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_first_club_minimum_strength_star_2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_empty"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_first_club_minimum_strength_star_3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_empty"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_first_club_minimum_strength_star_4"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_empty"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_first_club_minimum_strength_star_5"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_empty"
+                        tools:ignore="ContentDescription" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -368,35 +388,40 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_first_club_maximum_strength_star_2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_first_club_maximum_strength_star_3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_first_club_maximum_strength_star_4"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_first_club_maximum_strength_star_5"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -441,35 +466,40 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_half_full" />
+                        app:srcCompat="@drawable/star_half_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_second_club_minimum_strength_star_2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_empty"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_second_club_minimum_strength_star_3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_empty"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_second_club_minimum_strength_star_4"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_empty"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_second_club_minimum_strength_star_5"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_empty"
+                        tools:ignore="ContentDescription" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -502,35 +532,40 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_second_club_maximum_strength_star_2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_second_club_maximum_strength_star_3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_second_club_maximum_strength_star_4"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/advanced_layout_second_club_maximum_strength_star_5"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_full" />
+                        app:srcCompat="@drawable/star_full"
+                        tools:ignore="ContentDescription" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -544,7 +579,8 @@
         app:layout_constraintBottom_toTopOf="@+id/advanced_game_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advanced_layout_club_strength">
+        app:layout_constraintTop_toBottomOf="@+id/advanced_layout_club_strength"
+        tools:ignore="DisableBaselineAlignment">
 
         <LinearLayout
             android:id="@+id/advanced_layout_first_club_filter"
@@ -553,7 +589,8 @@
             android:layout_gravity="start"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingTop="5dp">
+            android:paddingTop="5dp"
+            tools:ignore="InefficientWeight">
 
             <LinearLayout
                 android:id="@+id/advanced_layout_first_club_country_filter"
@@ -574,7 +611,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:popupBackground="#1c1c27" />
+                    android:popupBackground="#1c1c27"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
@@ -597,7 +635,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:popupBackground="#1c1c27" />
+                    android:popupBackground="#1c1c27"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
         </LinearLayout>
 
@@ -628,7 +667,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:popupBackground="#1c1c27" />
+                    android:popupBackground="#1c1c27"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
@@ -651,7 +691,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:popupBackground="#1c1c27" />
+                    android:popupBackground="#1c1c27"
+                    tools:ignore="TooManyViews,TouchTargetSizeCheck" />
             </LinearLayout>
         </LinearLayout>
 
@@ -678,7 +719,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/advanced_generate_button"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/fc25_icon" />
+        app:srcCompat="@drawable/fc25_icon"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/advanced_filter"
@@ -689,6 +731,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/advanced_generate_button"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/filter_icon" />
+        app:srcCompat="@drawable/filter_icon"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

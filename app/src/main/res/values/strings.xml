@@ -101,9 +101,7 @@
     <string name="advancedSecondClubStar3">advancedSecondClubStar3</string>
     <string name="advancedSecondClubStar4">advancedSecondClubStar4</string>
     <string name="advancedSecondClubStar5">advancedSecondClubStar5</string>
-
-
-
+    <string name="advanced_settings">Advanced Settings</string>
 
 
 </resources>

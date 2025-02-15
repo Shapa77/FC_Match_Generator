@@ -11,7 +11,7 @@ android {
         applicationId = "com.shapacreations.generatorfifa22"
         minSdk = 24
         targetSdk = 34
-        versionCode = 9
+        versionCode = 10
         versionName = "Beta"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

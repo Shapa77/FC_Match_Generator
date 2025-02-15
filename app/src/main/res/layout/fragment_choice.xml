@@ -42,7 +42,8 @@
                 android:layout_marginTop="25dp"
                 android:layout_weight="1"
                 android:padding="25dp"
-                android:src="@drawable/fc25_icon" />
+                android:src="@drawable/fc25_icon"
+                tools:ignore="ContentDescription,NestedWeights" />
 
             <ImageView
                 android:id="@+id/choice_fc24"
@@ -51,7 +52,8 @@
                 android:layout_marginTop="25dp"
                 android:layout_weight="1"
                 android:padding="25dp"
-                android:src="@drawable/fc24_icon" />
+                android:src="@drawable/fc24_icon"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +69,8 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:padding="25dp"
-                android:src="@drawable/fifa23_icon" />
+                android:src="@drawable/fifa23_icon"
+                tools:ignore="ContentDescription,NestedWeights" />
 
             <ImageView
                 android:id="@+id/choice_fifa22"
@@ -76,7 +79,8 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:padding="25dp"
-                android:src="@drawable/fifa22_icon" />
+                android:src="@drawable/fifa22_icon"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
 
     </LinearLayout>

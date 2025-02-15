@@ -87,14 +87,17 @@ class AdvancedGenerateFragment : Fragment() {
 
         binding.advancedSexManChoice.setOnClickListener {
             changeSexButton(man = false, all = true, woman = false)
+            selectedSexForFilter =getString(R.string.Man)
             Toast.makeText(context,"Soon", Toast.LENGTH_SHORT).show()
         }
         binding.advancedSexBothChoice.setOnClickListener {
             changeSexButton(man = false, all = true, woman = false)
+            selectedSexForFilter =getString(R.string.All_sex)
             Toast.makeText(context,"Soon", Toast.LENGTH_SHORT).show()
         }
         binding.advancedSexWomanChoice.setOnClickListener {
             changeSexButton(man = false, all = true, woman = false)
+            selectedSexForFilter =getString(R.string.Woman)
             Toast.makeText(context,"Soon", Toast.LENGTH_SHORT).show()
         }
 
@@ -210,8 +213,6 @@ class AdvancedGenerateFragment : Fragment() {
         binding.advancedSexManChoice.isChecked = man
         binding.advancedSexBothChoice.isChecked = all
         binding.advancedSexWomanChoice.isChecked = woman
-
-
     }
 
     private fun initValues(){
@@ -275,6 +276,7 @@ class AdvancedGenerateFragment : Fragment() {
 
         binding.advancedLayoutFirstClubSpinnerCountry.adapter = spinnerCountryAdapter
         binding.advancedLayoutFirstClubSpinnerDivision.adapter = spinnerDivisionAdapter
+
 
         binding.advancedLayoutFirstClubSpinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
