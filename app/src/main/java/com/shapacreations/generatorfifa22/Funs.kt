@@ -36,20 +36,35 @@ fun loadClubsFromJson(context: Context, fileName:String): List<ClubModel> {
 }
 fun initList(context:Context,selectedClubsList:MutableList<ClubModel>,selectedCountryForFilter:String,selectedDivisionForFilter:String,minimumStrengthForFilter:Double,maximumStrengthForFilter:Double,selectedSexForFilter:String){
 
-    if(selectedCountryForFilter == context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) ){
+    if(selectedCountryForFilter == context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) && selectedSexForFilter == context.getString(R.string.All_sex)){
         for(i in clubList.indices) {
             if(clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter) {
                 selectedClubsList.add(clubList[i])
             }
         }
     }
-    else if(selectedCountryForFilter != context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions)){
+    else if(selectedCountryForFilter == context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) && selectedSexForFilter != context.getString(R.string.All_sex)){
+        for(i in clubList.indices) {
+            if(clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter && clubList[i].sex == selectedSexForFilter) {
+                selectedClubsList.add(clubList[i])
+            }
+        }
+    }
+    else if(selectedCountryForFilter != context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) && selectedSexForFilter == context.getString(R.string.All_sex)){
         for(i in clubList.indices) {
             if(clubList[i].country == selectedCountryForFilter && clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter){
                 selectedClubsList.add(clubList[i])
             }
         }
     }
+    else if(selectedCountryForFilter != context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) && selectedSexForFilter != context.getString(R.string.All_sex)){
+        for(i in clubList.indices) {
+            if(clubList[i].country == selectedCountryForFilter && clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter && clubList[i].sex == selectedSexForFilter){
+                selectedClubsList.add(clubList[i])
+            }
+        }
+    }
+
     else{
         for(i in clubList.indices) {
             if(clubList[i].country == selectedCountryForFilter && clubList[i].division == selectedDivisionForFilter && clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter){
@@ -79,6 +94,13 @@ fun strengthStarSet(binding:ViewBinding,strength:Double, star1:String, star2:Str
     val imageStar5 = star5ID.get(binding) as ImageView
 
     when (strength) {
+        StrengthValue.ZERO.value -> {
+            imageStar1.setImageResource(R.drawable.star_empty)
+            imageStar2.setImageResource(R.drawable.star_empty)
+            imageStar3.setImageResource(R.drawable.star_empty)
+            imageStar4.setImageResource(R.drawable.star_empty)
+            imageStar5.setImageResource(R.drawable.star_empty)
+        }
         StrengthValue.HALF.value -> {
             imageStar1.setImageResource(R.drawable.star_half_full)
             imageStar2.setImageResource(R.drawable.star_empty)

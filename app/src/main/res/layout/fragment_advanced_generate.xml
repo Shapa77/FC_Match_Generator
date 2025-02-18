@@ -282,11 +282,10 @@
 
         <LinearLayout
             android:id="@+id/advanced_layout_first_club_strength"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
             android:layout_marginStart="10dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:orientation="vertical"
             android:paddingTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -295,8 +294,9 @@
 
             <LinearLayout
                 android:id="@+id/advanced_layout_first_club_minimum_strength"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -361,8 +361,9 @@
 
             <LinearLayout
                 android:id="@+id/advanced_layout_first_club_maximum_strength"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -428,10 +429,11 @@
 
         <LinearLayout
             android:id="@+id/advanced_layout_second_club_strength"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="10dp"
+            android:layout_weight="0.5"
             android:orientation="vertical"
             android:paddingTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -439,8 +441,9 @@
 
             <LinearLayout
                 android:id="@+id/advanced_layout_second_club_minimum_strength"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -505,8 +508,9 @@
 
             <LinearLayout
                 android:id="@+id/advanced_layout_second_club_maximum_strength"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -587,22 +591,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:orientation="vertical"
             android:paddingTop="5dp"
             tools:ignore="InefficientWeight">
 
             <LinearLayout
                 android:id="@+id/advanced_layout_first_club_country_filter"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/advanced_layout_first_club_text_country_fiilter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/Country"
                     android:textColor="@color/white" />
 
@@ -610,15 +617,18 @@
                     android:id="@+id/advanced_layout_first_club_spinner_country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:popupBackground="#1c1c27"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/advanced_layout_first_club_division_filter"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
@@ -626,7 +636,9 @@
                     android:id="@+id/advanced_layout_first_club_text_division_filter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/Division"
                     android:textColor="@color/white" />
 
@@ -634,7 +646,9 @@
                     android:id="@+id/advanced_layout_first_club_spinner_division"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:popupBackground="#1c1c27"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
@@ -644,21 +658,24 @@
             android:id="@+id/advanced_layout_second_club_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_weight="0.5"
             android:orientation="vertical"
             android:paddingTop="5dp">
 
             <LinearLayout
                 android:id="@+id/advanced_layout_second_club_country_filter"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/advanced_layout_second_club_text_country_fiilter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/Country"
                     android:textColor="@color/white" />
 
@@ -666,15 +683,18 @@
                     android:id="@+id/advanced_layout_second_club_spinner_country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:popupBackground="#1c1c27"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/advanced_layout_second_club_division_filter"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
@@ -682,7 +702,9 @@
                     android:id="@+id/advanced_layout_second_club_text_division_filter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/Division"
                     android:textColor="@color/white" />
 
@@ -690,7 +712,9 @@
                     android:id="@+id/advanced_layout_second_club_spinner_division"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:popupBackground="#1c1c27"
                     tools:ignore="TooManyViews,TouchTargetSizeCheck" />
             </LinearLayout>
