@@ -77,12 +77,10 @@ class AdvancedGenerateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initValues()
         initSpinners()
 
         binding.advancedFilter.setOnClickListener { changeFragment(GenerateFragment(), gameId,false) }
-
 
         binding.advancedLayoutFirstClubMinimumStrengthStar1.setOnClickListener {
             if(!minimumStrengthStar11){ setMinimumStrengthClick1(true,StrengthValue.ONE.value,1) }
@@ -216,7 +214,9 @@ class AdvancedGenerateFragment : Fragment() {
 
     private fun initValues(){
 
-        binding.advancedSexWomanChoice.isClickable = !(gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal)
+
+        binding.advancedSexWomanChoice.isEnabled = !(gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal)
+        binding.advancedSexManChoice.isEnabled = !(gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal)
 
         if(binding.advancedSexWomanChoice.isChecked && (gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal)) {
             changeSexButton(man = false, all = true, woman = false)
@@ -268,8 +268,6 @@ class AdvancedGenerateFragment : Fragment() {
     }
     private fun initValuesData(){
 
-
-
         countryListForSpinner = when (gameId) {
             GameId.FC24.ordinal -> countryListForSpinnerFifa24
             GameId.FIFA23.ordinal -> countryListForSpinnerFifa23
@@ -304,7 +302,6 @@ class AdvancedGenerateFragment : Fragment() {
 
         }
 
-
         initSpinnersClub1()
         initSpinnersClub2()
         initSpinnerGame()
@@ -320,11 +317,8 @@ class AdvancedGenerateFragment : Fragment() {
         val spinnerCountryAdapter = CountrySpinnerAdapter(context,countryListForSpinnerSex)
         val spinnerDivisionAdapter = DivisionSpinnerAdapter(context, divisionListForSpinner1)
 
-
-
         binding.advancedLayoutFirstClubSpinnerCountry.adapter = spinnerCountryAdapter
         binding.advancedLayoutFirstClubSpinnerDivision.adapter = spinnerDivisionAdapter
-
 
         binding.advancedLayoutFirstClubSpinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -439,6 +433,7 @@ class AdvancedGenerateFragment : Fragment() {
                     initValues()
                     initValuesData()
                     initSpinners()
+                    setDefaultClubs()
                 }
 
             }
