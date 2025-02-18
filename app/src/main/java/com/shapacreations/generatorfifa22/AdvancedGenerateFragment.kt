@@ -23,8 +23,6 @@ class AdvancedGenerateFragment : Fragment() {
     private lateinit var selectedCountryForFilter2:String
     private lateinit var selectedDivisionForFilter2:String
 
-
-
     private lateinit var advancedListFirstClubStars:List<String>
     private lateinit var advancedListSecondClubStars:List<String>
 
@@ -84,7 +82,6 @@ class AdvancedGenerateFragment : Fragment() {
         initSpinners()
 
         binding.advancedFilter.setOnClickListener { changeFragment(GenerateFragment(), gameId,false) }
-
         binding.advancedSexManChoice.setOnClickListener {
             changeSexButton(man = false, all = true, woman = false)
             selectedSexForFilter =getString(R.string.Man)
@@ -217,7 +214,6 @@ class AdvancedGenerateFragment : Fragment() {
 
     private fun initValues(){
 
-        binding.advancedGameLogo.setImageResource(gameLogo)
         selectedSexForFilter = getString(R.string.All_sex)
 
         advancedListFirstClubStars = listOf(
@@ -259,10 +255,27 @@ class AdvancedGenerateFragment : Fragment() {
             getString(R.string.advancedLayoutSecondClubMaximumStrengthStar5))
 
     }
-    private fun initSpinners(){
+    private fun initValuesData(){
 
+        countryListForSpinner = when (gameId) {
+            GameId.FC24.ordinal -> countryListForSpinnerFifa24
+            GameId.FIFA23.ordinal -> countryListForSpinnerFifa23
+            GameId.FIFA22.ordinal -> countryListForSpinnerFifa22
+            GameId.FC25.ordinal -> countryListForSpinnerFifa25
+            else -> countryListForSpinnerFifa25
+        }
+        clubList = when (gameId) {
+            GameId.FC24.ordinal -> loadClubsFromJson(context,getString(R.string.clubs24_json))
+            GameId.FIFA23.ordinal -> loadClubsFromJson(context,getString(R.string.clubs23_json))
+            GameId.FIFA22.ordinal -> loadClubsFromJson(context,getString(R.string.clubs22_json))
+            GameId.FC25.ordinal -> loadClubsFromJson(context,getString(R.string.clubs25_json))
+            else -> loadClubsFromJson(context,getString(R.string.clubs25_json))
+        }
+    }
+    private fun initSpinners(){
         initSpinnersClub1()
         initSpinnersClub2()
+        initSpinnerGame()
     }
     private fun initSpinnersClub1(){
 
@@ -354,6 +367,31 @@ class AdvancedGenerateFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
         }
+    }
+    private fun initSpinnerGame(){
+        val spinnerGameAdapter = GameSpinnerAdapter(context, gameIconsForSpinner)
+
+        binding.advancedSpinnerGame.adapter = spinnerGameAdapter
+
+        binding.advancedSpinnerGame.setSelection(gameId)
+
+        binding.advancedSpinnerGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(gameId != position){
+                    gameId = position
+                    initValues()
+                    initValuesData()
+                    initSpinners()
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+        }
+
+
+
     }
 
     private fun setStrengthMinMaxStar1(){

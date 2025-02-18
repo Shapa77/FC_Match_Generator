@@ -1,6 +1,5 @@
 package com.shapacreations.generatorfifa22
 
-
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +9,6 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.shapacreations.generatorfifa22.databinding.FragmentGenerateBinding
-
-
 
 class GenerateFragment : Fragment() {
 
@@ -28,8 +25,6 @@ class GenerateFragment : Fragment() {
 
     private lateinit var listMinimumStrengthStars:List<String>
     private lateinit var listMaximumStrengthStars:List<String>
-
-
 
     private val divisionListForSpinner:ArrayList<String> = arrayListOf()
     private val selectedClubsList = mutableListOf<ClubModel>()
@@ -54,7 +49,6 @@ class GenerateFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {return binding.root }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -121,16 +115,6 @@ class GenerateFragment : Fragment() {
 
     private fun initValues() {
 
-        gameLogo = when (gameId) {
-            GameId.FC24.ordinal -> R.drawable.fc24_icon
-            GameId.FIFA23.ordinal -> R.drawable.fifa23_icon
-            GameId.FIFA22.ordinal -> R.drawable.fifa22_icon
-            GameId.FC25.ordinal -> R.drawable.fc25_icon
-            else -> R.drawable.fc25_icon
-        }
-
-        binding.gameLogo.setImageResource(gameLogo)
-
         countryListForSpinner = when (gameId) {
             GameId.FC24.ordinal -> countryListForSpinnerFifa24
             GameId.FIFA23.ordinal -> countryListForSpinnerFifa23
@@ -184,9 +168,13 @@ class GenerateFragment : Fragment() {
 
         val spinnerCountryAdapter = CountrySpinnerAdapter(context,countryListForSpinner)
         val spinnerDivisionAdapter = DivisionSpinnerAdapter(context, divisionListForSpinner)
+        val spinnerGameAdapter = GameSpinnerAdapter(context, gameIconsForSpinner)
 
         binding.spinnerCountry.adapter = spinnerCountryAdapter
         binding.spinnerDivision.adapter = spinnerDivisionAdapter
+        binding.spinnerGame.adapter = spinnerGameAdapter
+
+        binding.spinnerGame.setSelection(gameId)
 
         binding.spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -214,6 +202,19 @@ class GenerateFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedDivisionForFilter = divisionListForSpinner[position]
                 setStrengthMinMaxStar()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+        }
+        binding.spinnerGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(gameId != position){
+                    gameId = position
+                    initValues()
+                    initSpinners()
+                }
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

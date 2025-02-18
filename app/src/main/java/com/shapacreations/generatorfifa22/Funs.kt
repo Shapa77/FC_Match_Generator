@@ -162,3 +162,5 @@ fun strengthStarSet(binding:ViewBinding,strength:Double, star1:String, star2:Str
 }
 
 
+
+

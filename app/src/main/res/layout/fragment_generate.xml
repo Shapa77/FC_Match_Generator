@@ -435,17 +435,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/game_logo"
+    <Spinner
+        android:id="@+id/spinner_game"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginEnd="5dp"
+        android:background="@android:color/transparent"
+        android:popupBackground="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/generate_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/generate_button"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/fc25_icon"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/adv_filter"

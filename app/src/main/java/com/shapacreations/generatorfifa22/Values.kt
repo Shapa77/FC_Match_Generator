@@ -1,12 +1,17 @@
 package com.shapacreations.generatorfifa22
 
 
-var gameLogo = R.drawable.fc25_icon
+
 var gameId = GameId.FC25.ordinal
 var clubList:List<ClubModel> = listOf()
 var countryListForSpinner:List<ItemForSpinner> = listOf()
 
-
+val gameIconsForSpinner:List<GameIconForSpinner> = listOf(
+    GameIconForSpinner(R.drawable.fc25_icon),
+    GameIconForSpinner(R.drawable.fc24_icon),
+    GameIconForSpinner(R.drawable.fifa23_icon),
+    GameIconForSpinner(R.drawable.fifa22_icon)
+)
 val countryListForSpinnerFifa22:List<ItemForSpinner> = listOf(
     ItemForSpinner(R.drawable.country_14,"All countries"),
     ItemForSpinner(R.drawable.country_1,"Argentina"),
@@ -137,8 +142,9 @@ val countryListForSpinnerFifa25:List<ItemForSpinner> = listOf(
 data class RandClubs(val firstClub: Int, val secondClub: Int)
 data class ClubModel(val name:String, val logoId:Int, val country:String, val division:String, val strength:Double, val sex:String)
 data class ItemForSpinner(val icon:Int, val text: String)
+data class GameIconForSpinner(val icon:Int)
 
-enum class GameId{ FIFA22, FIFA23, FC24, FC25 }
+enum class GameId{ FC25,FC24,FIFA23,FIFA22 }
 enum class StrengthValue(val value:Double){
     HALF(0.5),
     ONE(1.0),
