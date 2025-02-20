@@ -75,6 +75,8 @@ class AdvancedGenerateFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View { return binding.root }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initValues()
@@ -85,7 +87,6 @@ class AdvancedGenerateFragment : Fragment() {
         binding.advancedLayoutFirstClubMinimumStrengthStar1.setOnClickListener {
             if(!minimumStrengthStar11){ setMinimumStrengthClick1(true,StrengthValue.ONE.value,1) }
             else{setMinimumStrengthClick1(false,StrengthValue.HALF.value,1) }
-
         }
         binding.advancedLayoutFirstClubMinimumStrengthStar2.setOnClickListener {
             if(!minimumStrengthStar12){ setMinimumStrengthClick1(true,StrengthValue.ONE_AND_HALF.value,2) }
@@ -214,9 +215,17 @@ class AdvancedGenerateFragment : Fragment() {
 
     private fun initValues(){
 
+        if(gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal){
+            binding.advancedSexWomanChoice.visibility = View.GONE
+            binding.advancedSexManChoice.visibility = View.GONE
+            binding.advancedSexBothChoice.visibility = View.GONE
+        }
 
-        binding.advancedSexWomanChoice.isEnabled = !(gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal)
-        binding.advancedSexManChoice.isEnabled = !(gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal)
+        else{
+            binding.advancedSexWomanChoice.visibility = View.VISIBLE
+            binding.advancedSexManChoice.visibility = View.VISIBLE
+            binding.advancedSexBothChoice.visibility = View.VISIBLE
+        }
 
         if(binding.advancedSexWomanChoice.isChecked && (gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal)) {
             changeSexButton(man = false, all = true, woman = false)
@@ -226,44 +235,12 @@ class AdvancedGenerateFragment : Fragment() {
         else if (binding.advancedSexWomanChoice.isChecked) getString(R.string.Woman)
         else getString(R.string.All_sex)
 
-
-        advancedListFirstClubStars = listOf(
-            getString(R.string.advancedFirstClubStar1),
-            getString(R.string.advancedFirstClubStar2),
-            getString(R.string.advancedFirstClubStar3),
-            getString(R.string.advancedFirstClubStar4),
-            getString(R.string.advancedFirstClubStar5))
-        advancedListSecondClubStars = listOf(
-            getString(R.string.advancedSecondClubStar1),
-            getString(R.string.advancedSecondClubStar2),
-            getString(R.string.advancedSecondClubStar3),
-            getString(R.string.advancedSecondClubStar4),
-            getString(R.string.advancedSecondClubStar5))
-
-        advancedListMinimumStrengthStars1 = listOf(
-            getString(R.string.advancedLayoutFirstClubMinimumStrengthStar1),
-            getString(R.string.advancedLayoutFirstClubMinimumStrengthStar2),
-            getString(R.string.advancedLayoutFirstClubMinimumStrengthStar3),
-            getString(R.string.advancedLayoutFirstClubMinimumStrengthStar4),
-            getString(R.string.advancedLayoutFirstClubMinimumStrengthStar5))
-        advancedListMaximumStrengthStars1 = listOf(
-            getString(R.string.advancedLayoutFirstClubMaximumStrengthStar1),
-            getString(R.string.advancedLayoutFirstClubMaximumStrengthStar2),
-            getString(R.string.advancedLayoutFirstClubMaximumStrengthStar3),
-            getString(R.string.advancedLayoutFirstClubMaximumStrengthStar4),
-            getString(R.string.advancedLayoutFirstClubMaximumStrengthStar5))
-        advancedListMinimumStrengthStars2 = listOf(
-            getString(R.string.advancedLayoutSecondClubMinimumStrengthStar1),
-            getString(R.string.advancedLayoutSecondClubMinimumStrengthStar2),
-            getString(R.string.advancedLayoutSecondClubMinimumStrengthStar3),
-            getString(R.string.advancedLayoutSecondClubMinimumStrengthStar4),
-            getString(R.string.advancedLayoutSecondClubMinimumStrengthStar5))
-        advancedListMaximumStrengthStars2 = listOf(
-            getString(R.string.advancedLayoutSecondClubMaximumStrengthStar1),
-            getString(R.string.advancedLayoutSecondClubMaximumStrengthStar2),
-            getString(R.string.advancedLayoutSecondClubMaximumStrengthStar3),
-            getString(R.string.advancedLayoutSecondClubMaximumStrengthStar4),
-            getString(R.string.advancedLayoutSecondClubMaximumStrengthStar5))
+        advancedListFirstClubStars = listOf(getString(R.string.advancedFirstClubStar1), getString(R.string.advancedFirstClubStar2), getString(R.string.advancedFirstClubStar3), getString(R.string.advancedFirstClubStar4), getString(R.string.advancedFirstClubStar5))
+        advancedListSecondClubStars = listOf(getString(R.string.advancedSecondClubStar1), getString(R.string.advancedSecondClubStar2), getString(R.string.advancedSecondClubStar3), getString(R.string.advancedSecondClubStar4), getString(R.string.advancedSecondClubStar5))
+        advancedListMinimumStrengthStars1 = listOf(getString(R.string.advancedLayoutFirstClubMinimumStrengthStar1), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar2), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar3), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar4), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar5))
+        advancedListMaximumStrengthStars1 = listOf(getString(R.string.advancedLayoutFirstClubMaximumStrengthStar1), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar2), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar3), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar4), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar5))
+        advancedListMinimumStrengthStars2 = listOf(getString(R.string.advancedLayoutSecondClubMinimumStrengthStar1), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar2), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar3), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar4), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar5))
+        advancedListMaximumStrengthStars2 = listOf(getString(R.string.advancedLayoutSecondClubMaximumStrengthStar1), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar2), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar3), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar4), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar5))
 
     }
     private fun initValuesData(){
@@ -420,12 +397,10 @@ class AdvancedGenerateFragment : Fragment() {
         }
     }
     private fun initSpinnerGame(){
+
         val spinnerGameAdapter = GameSpinnerAdapter(context, gameIconsForSpinner)
-
         binding.advancedSpinnerGame.adapter = spinnerGameAdapter
-
         binding.advancedSpinnerGame.setSelection(gameId)
-
         binding.advancedSpinnerGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(gameId != position){
@@ -442,48 +417,31 @@ class AdvancedGenerateFragment : Fragment() {
 
         }
 
-
-
     }
 
-    private fun setStrengthMinMaxStar1(){
+    private fun checkClubs(randFirstClub: Int, randSecondClub: Int) :RandClubs {
+        var firstClubRand = randFirstClub
+        var secondClubRand = randSecondClub
 
-        minimumStrengthForFilter1 = StrengthValue.HALF.value
-        maximumStrengthForFilter1 = StrengthValue.FIVE.value
+        if(selectedClubsList1[firstClubRand].sex != selectedClubsList2[secondClubRand].sex){
+            if((selectedClubsList1.any{it.sex == getString(R.string.Man)} && selectedClubsList2[secondClubRand].sex == getString(R.string.Man)) ||
+                (selectedClubsList1.any{it.sex == getString(R.string.Woman)} && selectedClubsList2[secondClubRand].sex == getString(R.string.Woman)) ||
+                (selectedClubsList2.any{it.sex == getString(R.string.Man)} && selectedClubsList1[firstClubRand].sex == getString(R.string.Man)) ||
+                (selectedClubsList2.any{it.sex == getString(R.string.Woman)} && selectedClubsList1[firstClubRand].sex == getString(R.string.Woman))){
 
-        initList(context,selectedClubsList1,selectedCountryForFilter1,selectedDivisionForFilter1,minimumStrengthForFilter1, maximumStrengthForFilter1,selectedSexForFilter)
+                while  ((selectedClubsList1.size>1 && selectedClubsList2.size>1) &&
+                    ((selectedClubsList1[firstClubRand].sex != selectedClubsList2[secondClubRand].sex))){
+                    firstClubRand = rand(selectedClubsList1)
+                    secondClubRand = rand(selectedClubsList2)
+                }
+            }
+            else{
+                Toast.makeText(context,R.string.Not_found, Toast.LENGTH_SHORT).show()
+                return RandClubs(-1,-1)}
 
-        minStarSet1 = selectedClubsList1.minOf { it.strength}
-        maxStarSet1 = selectedClubsList1.maxOf { it.strength}
+        }
 
-        strengthStarSet( binding,minStarSet1,advancedListMinimumStrengthStars1[0],advancedListMinimumStrengthStars1[1],advancedListMinimumStrengthStars1[2],advancedListMinimumStrengthStars1[3],advancedListMinimumStrengthStars1[4])
-        strengthStarSet( binding,maxStarSet1,advancedListMaximumStrengthStars1[0],advancedListMaximumStrengthStars1[1],advancedListMaximumStrengthStars1[2],advancedListMaximumStrengthStars1[3],advancedListMaximumStrengthStars1[4])
-
-        minimumStrengthForFilter1 = minStarSet1
-        maximumStrengthForFilter1 = maxStarSet1
-
-        selectedClubsList1.clear()
-
-    }
-    private fun setStrengthMinMaxStar2(){
-
-        minimumStrengthForFilter2 = StrengthValue.HALF.value
-        maximumStrengthForFilter2 = StrengthValue.FIVE.value
-
-        initList(context,selectedClubsList2,selectedCountryForFilter2,selectedDivisionForFilter2,minimumStrengthForFilter2, maximumStrengthForFilter2,selectedSexForFilter)
-
-        minStarSet2 = selectedClubsList2.minOf { it.strength}
-        maxStarSet2 = selectedClubsList2.maxOf { it.strength}
-
-
-        strengthStarSet( binding,minStarSet2,advancedListMinimumStrengthStars2[0],advancedListMinimumStrengthStars2[1],advancedListMinimumStrengthStars2[2],advancedListMinimumStrengthStars2[3],advancedListMinimumStrengthStars2[4])
-        strengthStarSet( binding,maxStarSet2,advancedListMaximumStrengthStars2[0],advancedListMaximumStrengthStars2[1],advancedListMaximumStrengthStars2[2],advancedListMaximumStrengthStars2[3],advancedListMaximumStrengthStars2[4])
-
-        minimumStrengthForFilter2 = minStarSet2
-        maximumStrengthForFilter2 = maxStarSet2
-
-        selectedClubsList2.clear()
-
+        return RandClubs(firstClubRand,secondClubRand)
     }
 
     private fun setClubs(randClubs: RandClubs){
@@ -540,7 +498,45 @@ class AdvancedGenerateFragment : Fragment() {
 
 
     }
+    private fun setStrengthMinMaxStar1(){
 
+        minimumStrengthForFilter1 = StrengthValue.HALF.value
+        maximumStrengthForFilter1 = StrengthValue.FIVE.value
+
+        initList(context,selectedClubsList1,selectedCountryForFilter1,selectedDivisionForFilter1,minimumStrengthForFilter1, maximumStrengthForFilter1,selectedSexForFilter)
+
+        minStarSet1 = selectedClubsList1.minOf { it.strength}
+        maxStarSet1 = selectedClubsList1.maxOf { it.strength}
+
+        strengthStarSet( binding,minStarSet1,advancedListMinimumStrengthStars1[0],advancedListMinimumStrengthStars1[1],advancedListMinimumStrengthStars1[2],advancedListMinimumStrengthStars1[3],advancedListMinimumStrengthStars1[4])
+        strengthStarSet( binding,maxStarSet1,advancedListMaximumStrengthStars1[0],advancedListMaximumStrengthStars1[1],advancedListMaximumStrengthStars1[2],advancedListMaximumStrengthStars1[3],advancedListMaximumStrengthStars1[4])
+
+        minimumStrengthForFilter1 = minStarSet1
+        maximumStrengthForFilter1 = maxStarSet1
+
+        selectedClubsList1.clear()
+
+    }
+    private fun setStrengthMinMaxStar2(){
+
+        minimumStrengthForFilter2 = StrengthValue.HALF.value
+        maximumStrengthForFilter2 = StrengthValue.FIVE.value
+
+        initList(context,selectedClubsList2,selectedCountryForFilter2,selectedDivisionForFilter2,minimumStrengthForFilter2, maximumStrengthForFilter2,selectedSexForFilter)
+
+        minStarSet2 = selectedClubsList2.minOf { it.strength}
+        maxStarSet2 = selectedClubsList2.maxOf { it.strength}
+
+
+        strengthStarSet( binding,minStarSet2,advancedListMinimumStrengthStars2[0],advancedListMinimumStrengthStars2[1],advancedListMinimumStrengthStars2[2],advancedListMinimumStrengthStars2[3],advancedListMinimumStrengthStars2[4])
+        strengthStarSet( binding,maxStarSet2,advancedListMaximumStrengthStars2[0],advancedListMaximumStrengthStars2[1],advancedListMaximumStrengthStars2[2],advancedListMaximumStrengthStars2[3],advancedListMaximumStrengthStars2[4])
+
+        minimumStrengthForFilter2 = minStarSet2
+        maximumStrengthForFilter2 = maxStarSet2
+
+        selectedClubsList2.clear()
+
+    }
     private fun setMinimumStrengthClick1(starBool:Boolean,strength: Double,starCount:Int){
 
 
@@ -669,32 +665,6 @@ class AdvancedGenerateFragment : Fragment() {
             strengthStarSet( binding,minimumStrengthForFilter2,advancedListMinimumStrengthStars2[0],advancedListMinimumStrengthStars2[1],advancedListMinimumStrengthStars2[2],advancedListMinimumStrengthStars2[3],advancedListMinimumStrengthStars2[4])
         }
     }
-
-    private fun checkClubs(randFirstClub: Int, randSecondClub: Int) :RandClubs {
-        var firstClubRand = randFirstClub
-        var secondClubRand = randSecondClub
-
-        if(selectedClubsList1[firstClubRand].sex != selectedClubsList2[secondClubRand].sex){
-            if((selectedClubsList1.any{it.sex == getString(R.string.Man)} && selectedClubsList2[secondClubRand].sex == getString(R.string.Man)) ||
-                (selectedClubsList1.any{it.sex == getString(R.string.Woman)} && selectedClubsList2[secondClubRand].sex == getString(R.string.Woman)) ||
-                (selectedClubsList2.any{it.sex == getString(R.string.Man)} && selectedClubsList1[firstClubRand].sex == getString(R.string.Man)) ||
-                (selectedClubsList2.any{it.sex == getString(R.string.Woman)} && selectedClubsList1[firstClubRand].sex == getString(R.string.Woman))){
-
-                while  ((selectedClubsList1.size>1 && selectedClubsList2.size>1) &&
-                    ((selectedClubsList1[firstClubRand].sex != selectedClubsList2[secondClubRand].sex))){
-                    firstClubRand = rand(selectedClubsList1)
-                    secondClubRand = rand(selectedClubsList2)
-                }
-            }
-            else{
-                Toast.makeText(context,R.string.Not_found, Toast.LENGTH_SHORT).show()
-                return RandClubs(-1,-1)}
-
-        }
-
-        return RandClubs(firstClubRand,secondClubRand)
-    }
-
     private fun setDefaultClubs(){
 
         binding.advancedLogoFirstClub.setImageResource(R.drawable.club_default)
