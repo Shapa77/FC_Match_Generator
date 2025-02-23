@@ -1,10 +1,12 @@
 package com.shapacreations.generatorfifa22
 
 import android.content.Context
+import android.content.res.Configuration
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.google.gson.JsonParser
+import java.util.Locale
 import kotlin.random.Random
 
 
@@ -36,28 +38,28 @@ fun loadClubsFromJson(context: Context, fileName:String): List<ClubModel> {
 }
 fun initList(context:Context,selectedClubsList:MutableList<ClubModel>,selectedCountryForFilter:String,selectedDivisionForFilter:String,minimumStrengthForFilter:Double,maximumStrengthForFilter:Double,selectedSexForFilter:String){
 
-    if(selectedCountryForFilter == context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) && selectedSexForFilter == context.getString(R.string.All_sex)){
+    if(selectedCountryForFilter == getStandardStringByValue(context,context.getString(R.string.All_countries)) && selectedDivisionForFilter == getStandardStringByValue(context,context.getString(R.string.All_divisions)) && selectedSexForFilter == context.getString(R.string.All_sex)){
         for(i in clubList.indices) {
             if(clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter) {
                 selectedClubsList.add(clubList[i])
             }
         }
     }
-    else if(selectedCountryForFilter == context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) && selectedSexForFilter != context.getString(R.string.All_sex)){
+    else if(selectedCountryForFilter == getStandardStringByValue(context,context.getString(R.string.All_countries))&& selectedDivisionForFilter == getStandardStringByValue(context,context.getString(R.string.All_divisions))&& selectedSexForFilter != context.getString(R.string.All_sex)){
         for(i in clubList.indices) {
             if(clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter && clubList[i].sex == selectedSexForFilter) {
                 selectedClubsList.add(clubList[i])
             }
         }
     }
-    else if(selectedCountryForFilter != context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) && selectedSexForFilter == context.getString(R.string.All_sex)){
+    else if(selectedCountryForFilter != getStandardStringByValue(context,context.getString(R.string.All_countries))&& selectedDivisionForFilter == getStandardStringByValue(context,context.getString(R.string.All_divisions))&& selectedSexForFilter == context.getString(R.string.All_sex)){
         for(i in clubList.indices) {
             if(clubList[i].country == selectedCountryForFilter && clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter){
                 selectedClubsList.add(clubList[i])
             }
         }
     }
-    else if(selectedCountryForFilter != context.getString(R.string.All_countries) && selectedDivisionForFilter == context.getString(R.string.All_divisions) && selectedSexForFilter != context.getString(R.string.All_sex)){
+    else if(selectedCountryForFilter != getStandardStringByValue(context,context.getString(R.string.All_countries)) && selectedDivisionForFilter == getStandardStringByValue(context,context.getString(R.string.All_divisions)) && selectedSexForFilter != context.getString(R.string.All_sex)){
         for(i in clubList.indices) {
             if(clubList[i].country == selectedCountryForFilter && clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter && clubList[i].sex == selectedSexForFilter){
                 selectedClubsList.add(clubList[i])
@@ -182,6 +184,60 @@ fun strengthStarSet(binding:ViewBinding,strength:Double, star1:String, star2:Str
         }
     }
 }
+
+fun getStandardStringByValue(context: Context, value: String): String {
+    val fields = R.string::class.java.fields
+    var key = ""
+
+    for (field in fields) {
+        val resId = field.getInt(null)
+        val resValue = context.getString(resId)
+        if (resValue == value) {
+            key = field.name
+            break
+        }
+    }
+
+    val defaultLocale = Locale.ENGLISH
+    val config = Configuration(context.resources.configuration)
+    config.setLocale(defaultLocale)
+    val defaultContext = context.createConfigurationContext(config)
+    val resId = defaultContext.resources.getIdentifier(key, "string", context.packageName)
+
+    return if (resId != 0) {
+        defaultContext.resources.getString(resId)
+    } else {
+        value
+    }
+}
+
+fun getLocalizedStringByValue(context: Context, standardValue: String): String {
+    val defaultLocale = Locale.ENGLISH
+    val config = Configuration(context.resources.configuration)
+    config.setLocale(defaultLocale)
+    val defaultContext = context.createConfigurationContext(config)
+
+    val fields = R.string::class.java.fields
+    var key = ""
+    for (field in fields) {
+        val resId = field.getInt(null)
+        val resValue = defaultContext.getString(resId)
+        if (resValue == standardValue) {
+            key = field.name
+            break
+        }
+    }
+
+    val resId = context.resources.getIdentifier(key, "string", context.packageName)
+    return if (resId != 0) {
+        context.resources.getString(resId)
+    } else {
+        standardValue
+    }
+}
+
+
+
 
 
 

@@ -246,7 +246,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/Man"
+            android:text="@string/ManButton"
             android:textColor="@color/white" />
 
         <RadioButton
@@ -257,7 +257,7 @@
             android:layout_marginEnd="35dp"
             android:layout_weight="1"
             android:checked="true"
-            android:text="@string/All_sex"
+            android:text="@string/All_sexButton"
             android:textColor="@color/white" />
 
         <RadioButton
@@ -265,7 +265,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/Woman"
+            android:text="@string/WomanButton"
             android:textColor="@color/white" />
 
     </LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Choose_game">Оберіть гру!</string>
+    <string name="MINIMUM_STRENGTH">МІНІМАЛЬНИЙ РЕЙТИНГ</string>
+    <string name="MAXIMUM_STRENGTH">МАКСИМАЛЬНИЙ РЕЙТИНГ</string>
+    <string name="Country">Країна</string>
+    <string name="Division">Ліга</string>
+    <string name="GENERATE_MATCH">ЗГЕНЕРУВАТИ</string>
+    <string name="All_divisions">Всі ліги</string>
+    <string name="Not_found">Не знайдено</string>
+    <string name="All_sexButton">Всі</string>
+    <string name="All_countries">Всі країни</string>
+    <string name="Argentina">Аргентина</string>
+    <string name="Australia">Австралія</string>
+    <string name="Austria">Австрія</string>
+    <string name="Belgium">Бельгія</string>
+    <string name="Brazil">Бразилія</string>
+    <string name="China_PR">Китай</string>
+    <string name="Denmark">Данія</string>
+    <string name="England">Англія</string>
+    <string name="France">Франція</string>
+    <string name="Germany">Німеччина</string>
+    <string name="Netherlands">Нідерланди</string>
+    <string name="India">Індія</string>
+    <string name="International">Міжнародний</string>
+    <string name="Italy">Італія</string>
+    <string name="Japan">Японія</string>
+    <string name="Korea_Republic">Південна Корея</string>
+    <string name="Mexico">Мексика</string>
+    <string name="Norway">Норвегія</string>
+    <string name="Poland">Польща</string>
+    <string name="Portugal">Португалія</string>
+    <string name="Republic_of_Ireland">Ірландія</string>
+    <string name="Rest_of_World">Решта світу</string>
+    <string name="Romania">Румунія</string>
+    <string name="Saudi_Arabia">Саудівська Аравія</string>
+    <string name="Scotland">Шотландія</string>
+    <string name="Spain">Іспанія</string>
+    <string name="Sweden">Швеція</string>
+    <string name="Switzerland">Швейцарія</string>
+    <string name="Turkey">Туреччина</string>
+    <string name="United_States">США</string>
+    <string name="ManButton">Чоловіки</string>
+    <string name="WomanButton">Жінки</string>
+</resources>

@@ -215,21 +215,6 @@ class AdvancedGenerateFragment : Fragment() {
 
     private fun initValues(){
 
-        if(gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal){
-            binding.advancedSexWomanChoice.visibility = View.GONE
-            binding.advancedSexManChoice.visibility = View.GONE
-            binding.advancedSexBothChoice.visibility = View.GONE
-        }
-
-        else{
-            binding.advancedSexWomanChoice.visibility = View.VISIBLE
-            binding.advancedSexManChoice.visibility = View.VISIBLE
-            binding.advancedSexBothChoice.visibility = View.VISIBLE
-        }
-
-        if(binding.advancedSexWomanChoice.isChecked && (gameId == GameId.FIFA22.ordinal || gameId == GameId.FIFA23.ordinal)) {
-            changeSexButton(man = false, all = true, woman = false)
-        }
 
         selectedSexForFilter = if (binding.advancedSexManChoice.isChecked) getString(R.string.Man)
         else if (binding.advancedSexWomanChoice.isChecked) getString(R.string.Woman)
@@ -264,6 +249,8 @@ class AdvancedGenerateFragment : Fragment() {
     }
     private fun initSpinners(){
 
+        countryListForSpinnerSex.clear()
+
         when(selectedSexForFilter){
 
             getString(R.string.All_sex)->{ for(i in countryListForSpinner) countryListForSpinnerSex.add(i) }
@@ -279,14 +266,17 @@ class AdvancedGenerateFragment : Fragment() {
 
         }
 
+        if(countryListForSpinnerSex.size == 2) countryListForSpinnerSex.removeAt(0)
+
+
         initSpinnersClub1()
         initSpinnersClub2()
         initSpinnerGame()
     }
     private fun initSpinnersClub1(){
 
-        selectedCountryForFilter1 = getString(R.string.All_countries)
-        selectedDivisionForFilter1 = getString(R.string.All_divisions)
+        selectedCountryForFilter1 = getStandardStringByValue(context,getString(R.string.All_countries))
+        selectedDivisionForFilter1 = getStandardStringByValue(context,getString(R.string.All_divisions))
 
         divisionListForSpinner1.add(getString(R.string.All_divisions))
 
@@ -300,8 +290,8 @@ class AdvancedGenerateFragment : Fragment() {
         binding.advancedLayoutFirstClubSpinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                selectedCountryForFilter1 = countryListForSpinnerSex[position].text
-                selectedDivisionForFilter1 = getString(R.string.All_divisions)
+                selectedCountryForFilter1 = getStandardStringByValue(context,countryListForSpinnerSex[position].text)
+                selectedDivisionForFilter1 = getStandardStringByValue(context,getString(R.string.All_divisions))
 
                 divisionListForSpinner1.clear()
                 divisionListForSpinner1.add(getString(R.string.All_divisions))
@@ -322,6 +312,11 @@ class AdvancedGenerateFragment : Fragment() {
                     }
                 }
 
+                if(divisionListForSpinner1.size == 2){
+                    divisionListForSpinner1.removeAt(0)
+                    spinnerDivisionAdapter.notifyDataSetChanged()
+                }
+                else spinnerDivisionAdapter.notifyDataSetChanged()
 
 
                 binding.advancedLayoutFirstClubSpinnerDivision.setSelection(0)
@@ -333,7 +328,9 @@ class AdvancedGenerateFragment : Fragment() {
         }
         binding.advancedLayoutFirstClubSpinnerDivision.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedDivisionForFilter1 = divisionListForSpinner1[position]
+                selectedDivisionForFilter1 = if(divisionListForSpinner1[position] == getString(R.string.All_divisions)){
+                    getStandardStringByValue(context,divisionListForSpinner1[position])
+                } else divisionListForSpinner1[position]
                 setStrengthMinMaxStar1()
             }
 
@@ -343,8 +340,8 @@ class AdvancedGenerateFragment : Fragment() {
     }
     private fun initSpinnersClub2(){
 
-        selectedCountryForFilter2 = getString(R.string.All_countries)
-        selectedDivisionForFilter2 = getString(R.string.All_divisions)
+        selectedCountryForFilter2 = getStandardStringByValue(context,getString(R.string.All_countries))
+        selectedDivisionForFilter2 = getStandardStringByValue(context,getString(R.string.All_divisions))
 
         divisionListForSpinner2.add(getString(R.string.All_divisions))
 
@@ -357,8 +354,8 @@ class AdvancedGenerateFragment : Fragment() {
         binding.advancedLayoutSecondClubSpinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                selectedCountryForFilter2 = countryListForSpinnerSex[position].text
-                selectedDivisionForFilter2 = getString(R.string.All_divisions)
+                selectedCountryForFilter2 = getStandardStringByValue(context,countryListForSpinnerSex[position].text)
+                selectedDivisionForFilter2 = getStandardStringByValue(context,getString(R.string.All_divisions))
 
                 divisionListForSpinner2.clear()
                 divisionListForSpinner2.add(getString(R.string.All_divisions))
@@ -379,6 +376,12 @@ class AdvancedGenerateFragment : Fragment() {
                     }
                 }
 
+                if(divisionListForSpinner2.size == 2){
+                    divisionListForSpinner2.removeAt(0)
+                    spinnerDivisionAdapter.notifyDataSetChanged()
+                }
+                else spinnerDivisionAdapter.notifyDataSetChanged()
+
                 binding.advancedLayoutSecondClubSpinnerDivision.setSelection(0)
                 setStrengthMinMaxStar2()
             }
@@ -388,7 +391,9 @@ class AdvancedGenerateFragment : Fragment() {
         }
         binding.advancedLayoutSecondClubSpinnerDivision.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedDivisionForFilter2 = divisionListForSpinner2[position]
+                selectedDivisionForFilter2 = if(divisionListForSpinner2[position] == getString(R.string.All_divisions)){
+                    getStandardStringByValue(context,divisionListForSpinner2[position])
+                } else divisionListForSpinner2[position]
                 setStrengthMinMaxStar2()
             }
 
@@ -450,12 +455,12 @@ class AdvancedGenerateFragment : Fragment() {
             binding.advancedLogoFirstClub.setImageResource(selectedClubsList1[randClubs.firstClub].logoId)
             binding.advancedNameFirstClub.text = selectedClubsList1[randClubs.firstClub].name
             binding.advancedDivisionFirstClub.text = selectedClubsList1[randClubs.firstClub].division
-            binding.advancedCountryFirstClub.text = selectedClubsList1[randClubs.firstClub].country
+            binding.advancedCountryFirstClub.text = getLocalizedStringByValue(context,selectedClubsList1[randClubs.firstClub].country)
 
             binding.advancedLogoSecondClub.setImageResource(selectedClubsList2[randClubs.secondClub].logoId)
             binding.advancedNameSecondClub.text = selectedClubsList2[randClubs.secondClub].name
             binding.advancedDivisionSecondClub.text = selectedClubsList2[randClubs.secondClub].division
-            binding.advancedCountrySecondClub.text = selectedClubsList2[randClubs.secondClub].country
+            binding.advancedCountrySecondClub.text = getLocalizedStringByValue(context,selectedClubsList2[randClubs.secondClub].country)
 
             var strength1 = StrengthValue.HALF.value
             var strength2 = StrengthValue.HALF.value

@@ -16,6 +16,7 @@ class GenerateFragment : Fragment() {
 
     private lateinit var context: Context
 
+
     private lateinit var selectedCountryForFilter:String
     private lateinit var selectedDivisionForFilter:String
     private lateinit var selectedSexForFilter:String
@@ -160,8 +161,8 @@ class GenerateFragment : Fragment() {
     }
     private fun initSpinners(){
 
-        selectedCountryForFilter = getString(R.string.All_countries)
-        selectedDivisionForFilter = getString(R.string.All_divisions)
+        selectedCountryForFilter = getStandardStringByValue(context,getString(R.string.All_countries))
+        selectedDivisionForFilter = getStandardStringByValue(context,getString(R.string.All_divisions))
 
         divisionListForSpinner.add(getString(R.string.All_divisions))
 
@@ -178,8 +179,8 @@ class GenerateFragment : Fragment() {
         binding.spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                selectedCountryForFilter = countryListForSpinner[position].text
-                selectedDivisionForFilter = getString(R.string.All_divisions)
+                selectedCountryForFilter = getStandardStringByValue(context,countryListForSpinner[position].text)
+                selectedDivisionForFilter = getStandardStringByValue(context,getString(R.string.All_divisions))
 
                 divisionListForSpinner.clear()
                 divisionListForSpinner.add(getString(R.string.All_divisions))
@@ -190,6 +191,12 @@ class GenerateFragment : Fragment() {
                     }
                 }
 
+                if(divisionListForSpinner.size == 2){
+                    divisionListForSpinner.removeAt(0)
+                    spinnerDivisionAdapter.notifyDataSetChanged()
+                }
+                else spinnerDivisionAdapter.notifyDataSetChanged()
+
                 binding.spinnerDivision.setSelection(0)
                 setStrengthMinMaxStar()
             }
@@ -199,7 +206,10 @@ class GenerateFragment : Fragment() {
         }
         binding.spinnerDivision.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedDivisionForFilter = divisionListForSpinner[position]
+                selectedDivisionForFilter = if(divisionListForSpinner[position] == getString(R.string.All_divisions)){
+                    getStandardStringByValue(context,divisionListForSpinner[position])
+                } else divisionListForSpinner[position]
+
                 setStrengthMinMaxStar()
             }
 
@@ -226,12 +236,12 @@ class GenerateFragment : Fragment() {
         binding.logoFirstClub.setImageResource(selectedClubsList[randClubs.firstClub].logoId)
         binding.nameFirstClub.text = selectedClubsList[randClubs.firstClub].name
         binding.divisionFirstClub.text = selectedClubsList[randClubs.firstClub].division
-        binding.countryFirstClub.text = selectedClubsList[randClubs.firstClub].country
+        binding.countryFirstClub.text = getLocalizedStringByValue(context,selectedClubsList[randClubs.firstClub].country)
 
         binding.logoSecondClub.setImageResource(selectedClubsList[randClubs.secondClub].logoId)
         binding.nameSecondClub.text = selectedClubsList[randClubs.secondClub].name
         binding.divisionSecondClub.text = selectedClubsList[randClubs.secondClub].division
-        binding.countrySecondClub.text = selectedClubsList[randClubs.secondClub].country
+        binding.countrySecondClub.text = getLocalizedStringByValue(context,selectedClubsList[randClubs.secondClub].country)
 
         var strength1 = StrengthValue.HALF.value
         var strength2 = StrengthValue.HALF.value

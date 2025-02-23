@@ -2,106 +2,141 @@
 
     <!-- Default values -->
 
-    <string name="app_name">FC Match Generator</string>
+    <string name="app_name" translatable="false">FC Match Generator</string>
     <string name="Choose_game">Choose your game!</string>
     <string name="MINIMUM_STRENGTH">MINIMUM STRENGTH</string>
     <string name="MAXIMUM_STRENGTH">MAXIMUM STRENGTH</string>
     <string name="Country">Country</string>
     <string name="Division">Division</string>
     <string name="GENERATE_MATCH">GENERATE MATCH</string>
-    <string name="All_countries">All countries</string>
     <string name="All_divisions">All divisions</string>
     <string name="Not_found">Not found</string>
-    <string name="International">International</string>
-    <string name="Man">Man</string>
-    <string name="Woman">Woman</string>
-    <string name="All_sex">All</string>
-    <string name="InAppUpdateTag">InAppUpdate</string>
-    <string name="InAppUpdateMsg">"Update flow failed! Result code: </string>
+    <string name="Man" translatable="false">Man</string>
+    <string name="Woman" translatable="false">Woman</string>
+    <string name="All_sex" translatable="false">All</string>
+    <string name="InAppUpdateTag" translatable="false">InAppUpdate</string>
+    <string name="InAppUpdateMsg" translatable="false">"Update flow failed! Result code: </string>
+    <string name="ManButton">Man</string>
+    <string name="WomanButton">Woman</string>
+    <string name="All_sexButton">All</string>
 
+
+    <!-- Countries -->
+
+    <string name="All_countries">All countries</string>
+    <string name="Argentina">Argentina</string>
+    <string name="Australia">Australia</string>
+    <string name="Austria">Austria</string>
+    <string name="Belgium">Belgium</string>
+    <string name="Brazil">Brazil</string>
+    <string name="China_PR">China PR</string>
+    <string name="Denmark">Denmark</string>
+    <string name="England">England</string>
+    <string name="France">France</string>
+    <string name="Germany">Germany</string>
+    <string name="Netherlands">Netherlands</string>
+    <string name="India">India</string>
+    <string name="International">International</string>
+    <string name="Italy">Italy</string>
+    <string name="Japan">Japan</string>
+    <string name="Korea_Republic">Korea Republic</string>
+    <string name="Mexico">Mexico</string>
+    <string name="Norway">Norway</string>
+    <string name="Poland">Poland</string>
+    <string name="Portugal">Portugal</string>
+    <string name="Republic_of_Ireland">Republic of Ireland</string>
+    <string name="Rest_of_World">Rest of World</string>
+    <string name="Romania">Romania</string>
+    <string name="Saudi_Arabia">Saudi Arabia</string>
+    <string name="Scotland">Scotland</string>
+    <string name="Spain">Spain</string>
+    <string name="Sweden">Sweden</string>
+    <string name="Switzerland">Switzerland</string>
+    <string name="Turkey">Turkey</string>
+    <string name="United_States">United States</string>
 
     <!-- MinMaxStrengthStar name -->
 
-    <string name="maximumStrengthStar1">maximumStrengthStar1</string>
-    <string name="maximumStrengthStar2">maximumStrengthStar2</string>
-    <string name="maximumStrengthStar3">maximumStrengthStar3</string>
-    <string name="maximumStrengthStar4">maximumStrengthStar4</string>
-    <string name="maximumStrengthStar5">maximumStrengthStar5</string>
+    <string name="maximumStrengthStar1" translatable="false">maximumStrengthStar1</string>
+    <string name="maximumStrengthStar2" translatable="false">maximumStrengthStar2</string>
+    <string name="maximumStrengthStar3" translatable="false">maximumStrengthStar3</string>
+    <string name="maximumStrengthStar4" translatable="false">maximumStrengthStar4</string>
+    <string name="maximumStrengthStar5" translatable="false">maximumStrengthStar5</string>
 
-    <string name="minimumStrengthStar1">minimumStrengthStar1</string>
-    <string name="minimumStrengthStar2">minimumStrengthStar2</string>
-    <string name="minimumStrengthStar3">minimumStrengthStar3</string>
-    <string name="minimumStrengthStar4">minimumStrengthStar4</string>
-    <string name="minimumStrengthStar5">minimumStrengthStar5</string>
+    <string name="minimumStrengthStar1" translatable="false">minimumStrengthStar1</string>
+    <string name="minimumStrengthStar2" translatable="false">minimumStrengthStar2</string>
+    <string name="minimumStrengthStar3" translatable="false">minimumStrengthStar3</string>
+    <string name="minimumStrengthStar4" translatable="false">minimumStrengthStar4</string>
+    <string name="minimumStrengthStar5" translatable="false">minimumStrengthStar5</string>
 
     <!-- json files name -->
 
-    <string name="clubs22.json">clubs22.json</string>
-    <string name="clubs23.json">clubs23.json</string>
-    <string name="clubs24.json">clubs24.json</string>
-    <string name="clubs25.json">clubs25.json</string>
+    <string name="clubs22.json" translatable="false">clubs22.json</string>
+    <string name="clubs23.json" translatable="false">clubs23.json</string>
+    <string name="clubs24.json" translatable="false">clubs24.json</string>
+    <string name="clubs25.json" translatable="false">clubs25.json</string>
 
     <!-- json object name -->
-    <string name="name">name</string>
-    <string name="logoId">logoId</string>
-    <string name="drawable">drawable</string>
-    <string name="country">country</string>
-    <string name="division">division</string>
-    <string name="strength">strength</string>
-    <string name="sex">sex</string>
+    <string name="name" translatable="false">name</string>
+    <string name="logoId" translatable="false">logoId</string>
+    <string name="drawable" translatable="false">drawable</string>
+    <string name="country" translatable="false">country</string>
+    <string name="division" translatable="false">division</string>
+    <string name="strength" translatable="false">strength</string>
+    <string name="sex" translatable="false">sex</string>
 
     <!-- first/second club star name -->
 
-    <string name="firstClubStar1">firstClubStar1</string>
-    <string name="firstClubStar2">firstClubStar2</string>
-    <string name="firstClubStar3">firstClubStar3</string>
-    <string name="firstClubStar4">firstClubStar4</string>
-    <string name="firstClubStar5">firstClubStar5</string>
+    <string name="firstClubStar1" translatable="false">firstClubStar1</string>
+    <string name="firstClubStar2" translatable="false">firstClubStar2</string>
+    <string name="firstClubStar3" translatable="false">firstClubStar3</string>
+    <string name="firstClubStar4" translatable="false">firstClubStar4</string>
+    <string name="firstClubStar5" translatable="false">firstClubStar5</string>
 
-    <string name="secondClubStar1">secondClubStar1</string>
-    <string name="secondClubStar2">secondClubStar2</string>
-    <string name="secondClubStar3">secondClubStar3</string>
-    <string name="secondClubStar4">secondClubStar4</string>
-    <string name="secondClubStar5">secondClubStar5</string>
+    <string name="secondClubStar1" translatable="false">secondClubStar1</string>
+    <string name="secondClubStar2" translatable="false">secondClubStar2</string>
+    <string name="secondClubStar3" translatable="false">secondClubStar3</string>
+    <string name="secondClubStar4" translatable="false">secondClubStar4</string>
+    <string name="secondClubStar5" translatable="false">secondClubStar5</string>
 
     <!-- advanced first/second club star name -->
 
-    <string name="advancedLayoutFirstClubMinimumStrengthStar1">advancedLayoutFirstClubMinimumStrengthStar1</string>
-    <string name="advancedLayoutFirstClubMinimumStrengthStar2">advancedLayoutFirstClubMinimumStrengthStar2</string>
-    <string name="advancedLayoutFirstClubMinimumStrengthStar3">advancedLayoutFirstClubMinimumStrengthStar3</string>
-    <string name="advancedLayoutFirstClubMinimumStrengthStar4">advancedLayoutFirstClubMinimumStrengthStar4</string>
-    <string name="advancedLayoutFirstClubMinimumStrengthStar5">advancedLayoutFirstClubMinimumStrengthStar5</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar1" translatable="false">advancedLayoutFirstClubMinimumStrengthStar1</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar2" translatable="false">advancedLayoutFirstClubMinimumStrengthStar2</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar3" translatable="false">advancedLayoutFirstClubMinimumStrengthStar3</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar4" translatable="false">advancedLayoutFirstClubMinimumStrengthStar4</string>
+    <string name="advancedLayoutFirstClubMinimumStrengthStar5" translatable="false">advancedLayoutFirstClubMinimumStrengthStar5</string>
 
-    <string name="advancedLayoutFirstClubMaximumStrengthStar1">advancedLayoutFirstClubMaximumStrengthStar1</string>
-    <string name="advancedLayoutFirstClubMaximumStrengthStar2">advancedLayoutFirstClubMaximumStrengthStar2</string>
-    <string name="advancedLayoutFirstClubMaximumStrengthStar3">advancedLayoutFirstClubMaximumStrengthStar3</string>
-    <string name="advancedLayoutFirstClubMaximumStrengthStar4">advancedLayoutFirstClubMaximumStrengthStar4</string>
-    <string name="advancedLayoutFirstClubMaximumStrengthStar5">advancedLayoutFirstClubMaximumStrengthStar5</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar1" translatable="false">advancedLayoutFirstClubMaximumStrengthStar1</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar2" translatable="false">advancedLayoutFirstClubMaximumStrengthStar2</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar3" translatable="false">advancedLayoutFirstClubMaximumStrengthStar3</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar4" translatable="false">advancedLayoutFirstClubMaximumStrengthStar4</string>
+    <string name="advancedLayoutFirstClubMaximumStrengthStar5" translatable="false">advancedLayoutFirstClubMaximumStrengthStar5</string>
 
-    <string name="advancedLayoutSecondClubMinimumStrengthStar1">advancedLayoutSecondClubMinimumStrengthStar1</string>
-    <string name="advancedLayoutSecondClubMinimumStrengthStar2">advancedLayoutSecondClubMinimumStrengthStar2</string>
-    <string name="advancedLayoutSecondClubMinimumStrengthStar3">advancedLayoutSecondClubMinimumStrengthStar3</string>
-    <string name="advancedLayoutSecondClubMinimumStrengthStar4">advancedLayoutSecondClubMinimumStrengthStar4</string>
-    <string name="advancedLayoutSecondClubMinimumStrengthStar5">advancedLayoutSecondClubMinimumStrengthStar5</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar1" translatable="false">advancedLayoutSecondClubMinimumStrengthStar1</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar2" translatable="false">advancedLayoutSecondClubMinimumStrengthStar2</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar3" translatable="false">advancedLayoutSecondClubMinimumStrengthStar3</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar4" translatable="false">advancedLayoutSecondClubMinimumStrengthStar4</string>
+    <string name="advancedLayoutSecondClubMinimumStrengthStar5" translatable="false">advancedLayoutSecondClubMinimumStrengthStar5</string>
 
-    <string name="advancedLayoutSecondClubMaximumStrengthStar1">advancedLayoutSecondClubMaximumStrengthStar1</string>
-    <string name="advancedLayoutSecondClubMaximumStrengthStar2">advancedLayoutSecondClubMaximumStrengthStar2</string>
-    <string name="advancedLayoutSecondClubMaximumStrengthStar3">advancedLayoutSecondClubMaximumStrengthStar3</string>
-    <string name="advancedLayoutSecondClubMaximumStrengthStar4">advancedLayoutSecondClubMaximumStrengthStar4</string>
-    <string name="advancedLayoutSecondClubMaximumStrengthStar5">advancedLayoutSecondClubMaximumStrengthStar5</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar1" translatable="false">advancedLayoutSecondClubMaximumStrengthStar1</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar2" translatable="false">advancedLayoutSecondClubMaximumStrengthStar2</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar3" translatable="false">advancedLayoutSecondClubMaximumStrengthStar3</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar4" translatable="false">advancedLayoutSecondClubMaximumStrengthStar4</string>
+    <string name="advancedLayoutSecondClubMaximumStrengthStar5" translatable="false">advancedLayoutSecondClubMaximumStrengthStar5</string>
 
-    <string name="advancedFirstClubStar1">advancedFirstClubStar1</string>
-    <string name="advancedFirstClubStar2">advancedFirstClubStar2</string>
-    <string name="advancedFirstClubStar3">advancedFirstClubStar3</string>
-    <string name="advancedFirstClubStar4">advancedFirstClubStar4</string>
-    <string name="advancedFirstClubStar5">advancedFirstClubStar5</string>
+    <string name="advancedFirstClubStar1" translatable="false">advancedFirstClubStar1</string>
+    <string name="advancedFirstClubStar2" translatable="false">advancedFirstClubStar2</string>
+    <string name="advancedFirstClubStar3" translatable="false">advancedFirstClubStar3</string>
+    <string name="advancedFirstClubStar4" translatable="false">advancedFirstClubStar4</string>
+    <string name="advancedFirstClubStar5" translatable="false">advancedFirstClubStar5</string>
 
-    <string name="advancedSecondClubStar1">advancedSecondClubStar1</string>
-    <string name="advancedSecondClubStar2">advancedSecondClubStar2</string>
-    <string name="advancedSecondClubStar3">advancedSecondClubStar3</string>
-    <string name="advancedSecondClubStar4">advancedSecondClubStar4</string>
-    <string name="advancedSecondClubStar5">advancedSecondClubStar5</string>
-    <string name="advanced_settings">Advanced Settings</string>
+    <string name="advancedSecondClubStar1" translatable="false">advancedSecondClubStar1</string>
+    <string name="advancedSecondClubStar2" translatable="false">advancedSecondClubStar2</string>
+    <string name="advancedSecondClubStar3" translatable="false">advancedSecondClubStar3</string>
+    <string name="advancedSecondClubStar4" translatable="false">advancedSecondClubStar4</string>
+    <string name="advancedSecondClubStar5" translatable="false">advancedSecondClubStar5</string>
+    <string name="advanced_settings" translatable="false">Advanced Settings</string>
 
 
 </resources>
