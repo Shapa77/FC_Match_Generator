@@ -1,5 +1,6 @@
-package com.shapacreations.generatorfifa22
+package com.shapacreations.generatorfifa22 //Назва пакету
 
+//Імпорт потрібних класів
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,15 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
-
 import com.shapacreations.generatorfifa22.databinding.FragmentAdvancedGenerateBinding
+//-------------------------------------------------------------------------------------//
+
 
 class AdvancedGenerateFragment : Fragment() {
 
+    //Оголошення змінних
     private val binding by lazy { FragmentAdvancedGenerateBinding.inflate(layoutInflater) }
 
     private lateinit var context: Context
-
     private lateinit var selectedCountryForFilter1:String
     private lateinit var selectedDivisionForFilter1:String
 
@@ -71,19 +73,21 @@ class AdvancedGenerateFragment : Fragment() {
     private var maximumStrengthStar23 = false
     private var maximumStrengthStar24 = false
     private var maximumStrengthStar25 = false
+    //-------------------------------------------------------------------------------------//
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View { return binding.root }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View { return binding.root } //Стандартна функція створення фрагменту
 
 
-
+    //Стандартна функція, коли фрагмент створено
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initValues()
-        initSpinners()
+        initValues() //Ініціалізація змінних
+        initSpinners() //Ініціалізація випадаючих списків
 
-        binding.advancedFilter.setOnClickListener { changeFragment(GenerateFragment(), gameId,false) }
+        binding.advancedFilter.setOnClickListener { changeFragment(GenerateFragment(), gameId,false) } //Дія при натисканні кнопки розширеного фільтра - зміна фрагменту на стандартний фільтр
 
+        //Перевірка поточного стану натиснення на зірки та встановлення відповідного значення для рейтингу
         binding.advancedLayoutFirstClubMinimumStrengthStar1.setOnClickListener {
             if(!minimumStrengthStar11){ setMinimumStrengthClick1(true,StrengthValue.ONE.value,1) }
             else{setMinimumStrengthClick1(false,StrengthValue.HALF.value,1) }
@@ -167,69 +171,82 @@ class AdvancedGenerateFragment : Fragment() {
             if(!maximumStrengthStar25){ setMaximumStrengthClick2(true,StrengthValue.FOUR_AND_HALF.value,5) }
             else{ setMaximumStrengthClick2(false,StrengthValue.FIVE.value,5) }
         }
+        //------------------------------------------------------------------------------------------//
 
+
+        //Дія при натисканні на radioButton для зміни статі
         binding.advancedSexManChoice.setOnClickListener {changeSexButton(man = true, all = false, woman = false)}
         binding.advancedSexBothChoice.setOnClickListener {changeSexButton(man = false, all = true, woman = false)}
         binding.advancedSexWomanChoice.setOnClickListener {changeSexButton(man = false, all = false, woman = true)}
+        //------------------------------------------------------------------------------------------//
 
+
+        //Дія при натисканні кнопки "Згенерувати"
         binding.advancedGenerateButton.setOnClickListener {
 
-            binding.advancedSexImage.visibility = View.VISIBLE
+            binding.advancedSexImage.visibility = View.VISIBLE //Відображення іконки статі матчу
 
-            initList(context,selectedClubsList1,selectedCountryForFilter1,selectedDivisionForFilter1,minimumStrengthForFilter1, maximumStrengthForFilter1,selectedSexForFilter)
-            initList(context,selectedClubsList2,selectedCountryForFilter2,selectedDivisionForFilter2,minimumStrengthForFilter2, maximumStrengthForFilter2,selectedSexForFilter)
+            initList(context,selectedClubsList1,selectedCountryForFilter1,selectedDivisionForFilter1,minimumStrengthForFilter1, maximumStrengthForFilter1,selectedSexForFilter) //Ініціалізація списку команди 1 згідно фільтру
+            initList(context,selectedClubsList2,selectedCountryForFilter2,selectedDivisionForFilter2,minimumStrengthForFilter2, maximumStrengthForFilter2,selectedSexForFilter) //Ініціалізація списку команди 2 згідно фільтру
 
+            //Перевірка на розмір списку
             if (selectedClubsList1.size > 0 && selectedClubsList2.size > 0) {
 
-                setClubs(checkClubs(rand(selectedClubsList1), rand(selectedClubsList2)))
+                setClubs(checkClubs(rand(selectedClubsList1), rand(selectedClubsList2))) //Вивід команд на екран
 
-                selectedClubsList1.clear()
-                selectedClubsList2.clear()
+                selectedClubsList1.clear()//Очистка списку команд 1
+                selectedClubsList2.clear()//Очистка списку команд 2
             }
             else {
-                Toast.makeText(context,R.string.Not_found, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,R.string.Not_found, Toast.LENGTH_SHORT).show() //Вивід помилки "Не знайдено" (пустий список)
             }
 
 
         }
 
-
     }
 
-
+    //Оновлення змінних при зміні фільтру статі
     private fun changeSexButton(man:Boolean, all:Boolean, woman:Boolean){
 
+            //Встановлення radioButton в статус "Натиснуто"
             binding.advancedSexManChoice.isChecked = man
             binding.advancedSexBothChoice.isChecked = all
             binding.advancedSexWomanChoice.isChecked = woman
+            //------------------------------------------------------------------------------------------//
 
-            selectedSexForFilter = if (man) getString(R.string.Man)
+            selectedSexForFilter = if (man) getString(R.string.Man) //Ініціалізація змінної вибору статі для фільтру
             else if (woman) getString(R.string.Woman)
             else getString(R.string.All_sex)
 
-            countryListForSpinnerSex.clear()
-            initSpinners()
-            setDefaultClubs()
+            countryListForSpinnerSex.clear()//Очистка списку країн для фільтру
+            initSpinners()//Ініціалізація випадаючих списків
+            setDefaultClubs()//Вивід даних стандартних команд у відповідні поля
 
     }
 
+    //Ініціалізація змінних
     private fun initValues(){
 
 
-        selectedSexForFilter = if (binding.advancedSexManChoice.isChecked) getString(R.string.Man)
+        selectedSexForFilter = if (binding.advancedSexManChoice.isChecked) getString(R.string.Man) //Ініціалізація змінної вибору статі для фільтру
         else if (binding.advancedSexWomanChoice.isChecked) getString(R.string.Woman)
         else getString(R.string.All_sex)
 
+        //Ініціалізація списків з ідентифікаторами кнопок-зірок
         advancedListFirstClubStars = listOf(getString(R.string.advancedFirstClubStar1), getString(R.string.advancedFirstClubStar2), getString(R.string.advancedFirstClubStar3), getString(R.string.advancedFirstClubStar4), getString(R.string.advancedFirstClubStar5))
         advancedListSecondClubStars = listOf(getString(R.string.advancedSecondClubStar1), getString(R.string.advancedSecondClubStar2), getString(R.string.advancedSecondClubStar3), getString(R.string.advancedSecondClubStar4), getString(R.string.advancedSecondClubStar5))
         advancedListMinimumStrengthStars1 = listOf(getString(R.string.advancedLayoutFirstClubMinimumStrengthStar1), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar2), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar3), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar4), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar5))
         advancedListMaximumStrengthStars1 = listOf(getString(R.string.advancedLayoutFirstClubMaximumStrengthStar1), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar2), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar3), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar4), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar5))
         advancedListMinimumStrengthStars2 = listOf(getString(R.string.advancedLayoutSecondClubMinimumStrengthStar1), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar2), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar3), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar4), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar5))
         advancedListMaximumStrengthStars2 = listOf(getString(R.string.advancedLayoutSecondClubMaximumStrengthStar1), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar2), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar3), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar4), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar5))
-
+        //------------------------------------------------------------------------------------------//
     }
+
+    //Ініціалізація змінних-списків
     private fun initValuesData(){
 
+        //Ініціалізація списку країн для випадаючих списків
         countryListForSpinner = when (gameId) {
             GameId.FC24.ordinal -> countryListForSpinnerFifa24
             GameId.FIFA23.ordinal -> countryListForSpinnerFifa23
@@ -237,6 +254,8 @@ class AdvancedGenerateFragment : Fragment() {
             GameId.FC25.ordinal -> countryListForSpinnerFifa25
             else -> countryListForSpinnerFifa25
         }
+
+        //Ініціалізація списку команд (витягнення з файлу json)
         clubList = when (gameId) {
             GameId.FC24.ordinal -> loadClubsFromJson(context,getString(R.string.clubs24_json))
             GameId.FIFA23.ordinal -> loadClubsFromJson(context,getString(R.string.clubs23_json))
@@ -247,10 +266,13 @@ class AdvancedGenerateFragment : Fragment() {
 
 
     }
+
+    //Ініціалізація випадаючих списків
     private fun initSpinners(){
 
-        countryListForSpinnerSex.clear()
+        countryListForSpinnerSex.clear()//Очистка списку країн для фільтру
 
+        //Ініціалізація списку команд для фільтру в залежності від обраної статі
         when(selectedSexForFilter){
 
             getString(R.string.All_sex)->{ for(i in countryListForSpinner) countryListForSpinnerSex.add(i) }
@@ -266,37 +288,40 @@ class AdvancedGenerateFragment : Fragment() {
 
         }
 
-        if(countryListForSpinnerSex.size == 2) countryListForSpinnerSex.removeAt(0)
+        if(countryListForSpinnerSex.size == 2) countryListForSpinnerSex.removeAt(0) //Видалення пункту "Всі країни", якщо у списку тільки одна країна
 
 
-        initSpinnersClub1()
-        initSpinnersClub2()
-        initSpinnerGame()
+        initSpinnersClub1() //Ініціалізація випадаючих списків для команди 1
+        initSpinnersClub2() //Ініціалізація випадаючих списків для команди 2
+        initSpinnerGame() //Ініціалізація випадаючого списку для зміни версії гри
     }
+
+    //Ініціалізація випадаючих списків для команди 1
     private fun initSpinnersClub1(){
 
-        selectedCountryForFilter1 = getStandardStringByValue(context,getString(R.string.All_countries))
-        selectedDivisionForFilter1 = getStandardStringByValue(context,getString(R.string.All_divisions))
+        selectedCountryForFilter1 = getStandardStringByValue(context,getString(R.string.All_countries)) //Ініціалізація змінної обраної країни для фільтру (береться значення без врахування локалізації)
+        selectedDivisionForFilter1 = getStandardStringByValue(context,getString(R.string.All_divisions))//Ініціалізація змінної обраної ліги для фільтру (береться значення без врахування локалізації)
 
-        divisionListForSpinner1.add(getString(R.string.All_divisions))
+        divisionListForSpinner1.add(getString(R.string.All_divisions)) //Додавання пункту "Всі ліги" до списку ліг для випадаючого списку
 
 
-        val spinnerCountryAdapter = CountrySpinnerAdapter(context,countryListForSpinnerSex)
-        val spinnerDivisionAdapter = DivisionSpinnerAdapter(context, divisionListForSpinner1)
+        val spinnerCountryAdapter = CountrySpinnerAdapter(context,countryListForSpinnerSex) // Ініціалізація адаптеру випадаючого списку країн
+        val spinnerDivisionAdapter = DivisionSpinnerAdapter(context, divisionListForSpinner1) // Ініціалізація адаптеру випадаючого списку ліг
 
-        binding.advancedLayoutFirstClubSpinnerCountry.adapter = spinnerCountryAdapter
-        binding.advancedLayoutFirstClubSpinnerDivision.adapter = spinnerDivisionAdapter
+        binding.advancedLayoutFirstClubSpinnerCountry.adapter = spinnerCountryAdapter //Присвоєння адаптеру для випадаючого списку країн
+        binding.advancedLayoutFirstClubSpinnerDivision.adapter = spinnerDivisionAdapter //Присвоєння адаптеру для випадаючого списку ліг
 
+        //Дія при виборі елементу випадаючого списку країн
         binding.advancedLayoutFirstClubSpinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                selectedCountryForFilter1 = getStandardStringByValue(context,countryListForSpinnerSex[position].text)
-                selectedDivisionForFilter1 = getStandardStringByValue(context,getString(R.string.All_divisions))
+                selectedCountryForFilter1 = getStandardStringByValue(context,countryListForSpinnerSex[position].text) //Ініціалізація змінної обраної країни для фільтру (береться значення без врахування локалізації)
+                selectedDivisionForFilter1 = getStandardStringByValue(context,getString(R.string.All_divisions)) //Ініціалізація змінної обраної ліги для фільтру (береться значення без врахування локалізації)
 
-                divisionListForSpinner1.clear()
-                divisionListForSpinner1.add(getString(R.string.All_divisions))
+                divisionListForSpinner1.clear() //Очищення списку ліг для випадаючого списку
+                divisionListForSpinner1.add(getString(R.string.All_divisions)) //Додавання елементу "Всі ліги" до випадаючого списку ліг
 
-
+                //Заповнення випадаючого списку ліг в залежності від обраної статі
                 if(selectedSexForFilter == getString(R.string.Woman) || selectedSexForFilter == getString(R.string.Man)){
                     for(i in clubList){
                         if(i.country == selectedCountryForFilter1 && i.sex == selectedSexForFilter && !divisionListForSpinner1.contains(i.division)){
@@ -312,54 +337,63 @@ class AdvancedGenerateFragment : Fragment() {
                     }
                 }
 
+                //Видалення зі списку пункту "Всі ліги", якщо ліга лише одна (два елемента в списку)
                 if(divisionListForSpinner1.size == 2){
                     divisionListForSpinner1.removeAt(0)
-                    spinnerDivisionAdapter.notifyDataSetChanged()
+                    spinnerDivisionAdapter.notifyDataSetChanged() //Оновлення випадаючого списку
                 }
-                else spinnerDivisionAdapter.notifyDataSetChanged()
+                else spinnerDivisionAdapter.notifyDataSetChanged() //Оновлення випадаючого списку
 
 
-                binding.advancedLayoutFirstClubSpinnerDivision.setSelection(0)
-                setStrengthMinMaxStar1()
+                binding.advancedLayoutFirstClubSpinnerDivision.setSelection(0) //Вибір у випадаючий список елемент з індексом 0 (перший в списку)
+                setStrengthMinMaxStar1() //Встановлення мінімального та максимального значення для списку команд в залежності від фільтрів
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {} //Дія, якщо не обрано нічого
 
         }
+
+        //Дія при виборі елементу випадаючого списку ліг
         binding.advancedLayoutFirstClubSpinnerDivision.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedDivisionForFilter1 = if(divisionListForSpinner1[position] == getString(R.string.All_divisions)){
-                    getStandardStringByValue(context,divisionListForSpinner1[position])
-                } else divisionListForSpinner1[position]
-                setStrengthMinMaxStar1()
+
+                //Ініціалізація змінної обраної ліги для фільтру
+                selectedDivisionForFilter1 = if(divisionListForSpinner1[position] == getString(R.string.All_divisions)){ //Якщо значення "Всі ліги"
+                    getStandardStringByValue(context,divisionListForSpinner1[position])//Брати значення без врахування локалізації
+                } else divisionListForSpinner1[position] //Якщо ні - брати значення з урахуванням локалізації
+                setStrengthMinMaxStar1() //Встановлення мінімального та максимального значення для списку команд в залежності від фільтрів
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {} //Дія, якщо не обрано нічого
 
         }
     }
+
+    //Ініціалізація випадаючих списків для команди 2
     private fun initSpinnersClub2(){
 
-        selectedCountryForFilter2 = getStandardStringByValue(context,getString(R.string.All_countries))
-        selectedDivisionForFilter2 = getStandardStringByValue(context,getString(R.string.All_divisions))
+        selectedCountryForFilter2 = getStandardStringByValue(context,getString(R.string.All_countries)) //Ініціалізація змінної обраної країни для фільтру (береться значення без врахування локалізації)
+        selectedDivisionForFilter2 = getStandardStringByValue(context,getString(R.string.All_divisions)) //Ініціалізація змінної обраної ліги для фільтру (береться значення без врахування локалізації)
 
-        divisionListForSpinner2.add(getString(R.string.All_divisions))
+        divisionListForSpinner2.add(getString(R.string.All_divisions)) //Додавання пункту "Всі ліги" до списку ліг для випадаючого списку
 
-        val spinnerCountryAdapter = CountrySpinnerAdapter(context,countryListForSpinnerSex)
-        val spinnerDivisionAdapter = DivisionSpinnerAdapter(context, divisionListForSpinner2)
+        val spinnerCountryAdapter = CountrySpinnerAdapter(context,countryListForSpinnerSex) // Ініціалізація адаптеру випадаючого списку країн
+        val spinnerDivisionAdapter = DivisionSpinnerAdapter(context, divisionListForSpinner2) // Ініціалізація адаптеру випадаючого списку ліг
 
-        binding.advancedLayoutSecondClubSpinnerCountry.adapter = spinnerCountryAdapter
-        binding.advancedLayoutSecondClubSpinnerDivision.adapter = spinnerDivisionAdapter
+        binding.advancedLayoutSecondClubSpinnerCountry.adapter = spinnerCountryAdapter  //Присвоєння адаптеру для випадаючого списку країн
+        binding.advancedLayoutSecondClubSpinnerDivision.adapter = spinnerDivisionAdapter //Присвоєння адаптеру для випадаючого списку ліг
 
+        //Дія при виборі елементу випадаючого списку країн
         binding.advancedLayoutSecondClubSpinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                selectedCountryForFilter2 = getStandardStringByValue(context,countryListForSpinnerSex[position].text)
-                selectedDivisionForFilter2 = getStandardStringByValue(context,getString(R.string.All_divisions))
+                selectedCountryForFilter2 = getStandardStringByValue(context,countryListForSpinnerSex[position].text) //Ініціалізація змінної обраної країни для фільтру (береться значення без врахування локалізації)
+                selectedDivisionForFilter2 = getStandardStringByValue(context,getString(R.string.All_divisions)) //Ініціалізація змінної обраної ліги для фільтру (береться значення без врахування локалізації)
 
-                divisionListForSpinner2.clear()
-                divisionListForSpinner2.add(getString(R.string.All_divisions))
+                divisionListForSpinner2.clear() //Очищення списку ліг для випадаючого списку
+                divisionListForSpinner2.add(getString(R.string.All_divisions))  //Додавання елементу "Всі ліги" до випадаючого списку ліг
 
+                //Заповнення випадаючого списку ліг в залежності від обраної статі
                 if(selectedSexForFilter == getString(R.string.Woman) || selectedSexForFilter == getString(R.string.Man) ){
                     for(i in clubList){
                         if(i.country == selectedCountryForFilter2 && i.sex == selectedSexForFilter && !divisionListForSpinner2.contains(i.division)){
@@ -376,14 +410,15 @@ class AdvancedGenerateFragment : Fragment() {
                     }
                 }
 
+                //Видалення зі списку пункту "Всі ліги", якщо ліга лише одна (два елемента в списку)
                 if(divisionListForSpinner2.size == 2){
                     divisionListForSpinner2.removeAt(0)
-                    spinnerDivisionAdapter.notifyDataSetChanged()
+                    spinnerDivisionAdapter.notifyDataSetChanged() //Оновлення випадаючого списку
                 }
-                else spinnerDivisionAdapter.notifyDataSetChanged()
+                else spinnerDivisionAdapter.notifyDataSetChanged() //Оновлення випадаючого списку
 
-                binding.advancedLayoutSecondClubSpinnerDivision.setSelection(0)
-                setStrengthMinMaxStar2()
+                binding.advancedLayoutSecondClubSpinnerDivision.setSelection(0) //Вибір у випадаючий список елемент з індексом 0 (перший в списку)
+                setStrengthMinMaxStar2() //Встановлення мінімального та максимального значення для списку команд в залежності від фільтрів
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -401,6 +436,8 @@ class AdvancedGenerateFragment : Fragment() {
 
         }
     }
+
+    //Ініціалізація випадаючого списку для зміни версії гри
     private fun initSpinnerGame(){
 
         val spinnerGameAdapter = GameSpinnerAdapter(context, gameIconsForSpinner)
@@ -424,6 +461,7 @@ class AdvancedGenerateFragment : Fragment() {
 
     }
 
+    //Перевірка згенерованих команд
     private fun checkClubs(randFirstClub: Int, randSecondClub: Int) :RandClubs {
         var firstClubRand = randFirstClub
         var secondClubRand = randSecondClub
@@ -449,6 +487,7 @@ class AdvancedGenerateFragment : Fragment() {
         return RandClubs(firstClubRand,secondClubRand)
     }
 
+    //Вивід даних згенерованих команд у відповідні поля
     private fun setClubs(randClubs: RandClubs){
 
         if(randClubs.firstClub != -1){
@@ -503,6 +542,8 @@ class AdvancedGenerateFragment : Fragment() {
 
 
     }
+
+    //Вивід граничних рейтингів списку команд 1 згідно фільтрів
     private fun setStrengthMinMaxStar1(){
 
         minimumStrengthForFilter1 = StrengthValue.HALF.value
@@ -522,6 +563,8 @@ class AdvancedGenerateFragment : Fragment() {
         selectedClubsList1.clear()
 
     }
+
+    //Вивід граничних рейтингів списку команд 2 згідно фільтрів
     private fun setStrengthMinMaxStar2(){
 
         minimumStrengthForFilter2 = StrengthValue.HALF.value
@@ -542,6 +585,8 @@ class AdvancedGenerateFragment : Fragment() {
         selectedClubsList2.clear()
 
     }
+
+    //Встановлення мінімального рейтингу команди 1 для фільтру
     private fun setMinimumStrengthClick1(starBool:Boolean,strength: Double,starCount:Int){
 
 
@@ -576,6 +621,8 @@ class AdvancedGenerateFragment : Fragment() {
 
 
     }
+
+    //Встановлення мінімального рейтингу команди 2 для фільтру
     private fun setMinimumStrengthClick2(starBool:Boolean,strength: Double,starCount:Int){
 
         strengthStarSet( binding,strength,advancedListMinimumStrengthStars2[0],advancedListMinimumStrengthStars2[1],advancedListMinimumStrengthStars2[2],advancedListMinimumStrengthStars2[3],advancedListMinimumStrengthStars2[4])
@@ -606,6 +653,8 @@ class AdvancedGenerateFragment : Fragment() {
         }
 
     }
+
+    //Встановлення максимального рейтингу команди 1 для фільтру
     private fun setMaximumStrengthClick1(starBool:Boolean,strength: Double,starCount:Int){
 
         strengthStarSet( binding,strength,advancedListMaximumStrengthStars1[0],advancedListMaximumStrengthStars1[1],advancedListMaximumStrengthStars1[2],advancedListMaximumStrengthStars1[3],advancedListMaximumStrengthStars1[4])
@@ -640,6 +689,8 @@ class AdvancedGenerateFragment : Fragment() {
 
 
     }
+
+    //Встановлення максимального рейтингу команди 2 для фільтру
     private fun setMaximumStrengthClick2(starBool:Boolean,strength: Double,starCount:Int){
 
         strengthStarSet( binding,strength,advancedListMaximumStrengthStars2[0],advancedListMaximumStrengthStars2[1],advancedListMaximumStrengthStars2[2],advancedListMaximumStrengthStars2[3],advancedListMaximumStrengthStars2[4])
@@ -670,6 +721,8 @@ class AdvancedGenerateFragment : Fragment() {
             strengthStarSet( binding,minimumStrengthForFilter2,advancedListMinimumStrengthStars2[0],advancedListMinimumStrengthStars2[1],advancedListMinimumStrengthStars2[2],advancedListMinimumStrengthStars2[3],advancedListMinimumStrengthStars2[4])
         }
     }
+
+    //Вивід даних стандартних команд у відповідні поля
     private fun setDefaultClubs(){
 
         binding.advancedLogoFirstClub.setImageResource(R.drawable.club_default)
@@ -689,6 +742,7 @@ class AdvancedGenerateFragment : Fragment() {
 
     }
 
+    //Отримання контексту Activity (ініціалізація змінної "context")
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.context = requireContext()

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.shapacreations.generatorfifa22
 
 import android.content.Intent
@@ -13,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val REQUEST_CODE_UPDATE = 100
+    private val requestCodeUpdate = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,15 +28,16 @@ class MainActivity : AppCompatActivity() {
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                 && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, REQUEST_CODE_UPDATE)
+                appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, requestCodeUpdate)
             }
         }
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_UPDATE) {
+        if (requestCode == requestCodeUpdate) {
             if (resultCode != RESULT_OK) {
                 Log.e(getString(R.string.InAppUpdateTag), getString(R.string.InAppUpdateMsg) + resultCode)
             }

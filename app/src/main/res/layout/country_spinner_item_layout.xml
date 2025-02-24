@@ -14,7 +14,7 @@
         android:layout_margin="8dp"
         android:background="@android:color/transparent"
         android:src="@drawable/country_1"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/country_name_text"
