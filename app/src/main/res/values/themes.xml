@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.GeneratorFIFA22" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.GeneratorFIFA22" parent="Theme.Material3.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
     </style>

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.shapacreations.generatorfifa22.databinding.FragmentGenerateBinding
 
@@ -36,99 +35,87 @@ class GenerateFragment : Fragment() {
     private var minimumStrengthForFilter = StrengthValue.HALF.value
     private var maximumStrengthForFilter = StrengthValue.FIVE.value
 
-    private var minimumStrengthStar1 = false
-    private var minimumStrengthStar2 = false
-    private var minimumStrengthStar3 = false
-    private var minimumStrengthStar4 = false
-    private var minimumStrengthStar5 = false
-
-    private var maximumStrengthStar1 = false
-    private var maximumStrengthStar2 = false
-    private var maximumStrengthStar3 = false
-    private var maximumStrengthStar4 = false
-    private var maximumStrengthStar5 = false
-
+    private val minimumStrengthStars = mutableListOf(false, false, false, false, false)
+    private val maximumStrengthStars = mutableListOf(false, false, false, false, false)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {return binding.root }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { super.onViewCreated(view, savedInstanceState)
 
         initValues()
         initSpinners()
 
-        binding.minimumStrengthStar1.setOnClickListener {
-            if(!minimumStrengthStar1){ setMinimumStrengthClick(true,StrengthValue.ONE.value,1) }
-            else{setMinimumStrengthClick(false,StrengthValue.HALF.value,1) }
-        }
-        binding.minimumStrengthStar2.setOnClickListener {
-            if(!minimumStrengthStar2){ setMinimumStrengthClick(true,StrengthValue.ONE_AND_HALF.value,2) }
-            else{setMinimumStrengthClick(false,StrengthValue.TWO.value,2) }
-        }
-        binding.minimumStrengthStar3.setOnClickListener {
-            if(!minimumStrengthStar3){ setMinimumStrengthClick(true,StrengthValue.TWO_AND_HALF.value,3) }
-            else{setMinimumStrengthClick(false,StrengthValue.THREE.value,3) }
-        }
-        binding.minimumStrengthStar4.setOnClickListener {
-            if(!minimumStrengthStar4){ setMinimumStrengthClick(true,StrengthValue.THREE_AND_HALF.value,4) }
-            else{setMinimumStrengthClick(false,StrengthValue.FOUR.value,4) }
-        }
-        binding.minimumStrengthStar5.setOnClickListener {
-            if(!minimumStrengthStar5){ setMinimumStrengthClick(true,StrengthValue.FOUR_AND_HALF.value,5) }
-            else{setMinimumStrengthClick(false,StrengthValue.FIVE.value,5) }
-        }
+        binding.apply {
 
-        binding.maximumStrengthStar1.setOnClickListener {
-            if(!maximumStrengthStar1){ setMaximumStrengthClick(true,StrengthValue.ONE.value,1) }
-            else{ setMaximumStrengthClick(false,StrengthValue.HALF.value,1) }
-        }
-        binding.maximumStrengthStar2.setOnClickListener {
-            if(!maximumStrengthStar2){ setMaximumStrengthClick(true,StrengthValue.ONE_AND_HALF.value,2) }
-            else{ setMaximumStrengthClick(false,StrengthValue.TWO.value,2) }
-        }
-        binding.maximumStrengthStar3.setOnClickListener {
-            if(!maximumStrengthStar3){ setMaximumStrengthClick(true,StrengthValue.TWO_AND_HALF.value,3) }
-            else{ setMaximumStrengthClick(false,StrengthValue.THREE.value,3) }
-        }
-        binding.maximumStrengthStar4.setOnClickListener {
-            if(!maximumStrengthStar4){ setMaximumStrengthClick(true,StrengthValue.THREE_AND_HALF.value,4) }
-            else{ setMaximumStrengthClick(false,StrengthValue.FOUR.value,4) }
-        }
-        binding.maximumStrengthStar5.setOnClickListener {
-            if(!maximumStrengthStar5){ setMaximumStrengthClick(true,StrengthValue.FOUR_AND_HALF.value,5) }
-            else{ setMaximumStrengthClick(false,StrengthValue.FIVE.value,5) }
-        }
-
-        binding.generateButton.setOnClickListener {
-
-            initList(context,selectedClubsList,selectedCountryForFilter,selectedDivisionForFilter,minimumStrengthForFilter, maximumStrengthForFilter,selectedSexForFilter)
-            if (selectedClubsList.size > 0) {
-                setClubs(checkClubs(context,rand(selectedClubsList), rand(selectedClubsList)))
-                selectedClubsList.clear()
+            minimumStrengthStar1.setOnClickListener {
+                if(!minimumStrengthStars[0]){ setMinimumStrengthClick(true,StrengthValue.ONE.value,1) }
+                else{setMinimumStrengthClick(false,StrengthValue.HALF.value,1) }
             }
-            else {
-                Toast.makeText(context,R.string.Not_found,Toast.LENGTH_SHORT).show()
+            minimumStrengthStar2.setOnClickListener {
+                if(!minimumStrengthStars[1]){ setMinimumStrengthClick(true,StrengthValue.ONE_AND_HALF.value,2) }
+                else{setMinimumStrengthClick(false,StrengthValue.TWO.value,2) }
             }
+            minimumStrengthStar3.setOnClickListener {
+                if(!minimumStrengthStars[2]){ setMinimumStrengthClick(true,StrengthValue.TWO_AND_HALF.value,3) }
+                else{setMinimumStrengthClick(false,StrengthValue.THREE.value,3) }
+            }
+            minimumStrengthStar4.setOnClickListener {
+                if(!minimumStrengthStars[3]){ setMinimumStrengthClick(true,StrengthValue.THREE_AND_HALF.value,4) }
+                else{setMinimumStrengthClick(false,StrengthValue.FOUR.value,4) }
+            }
+            minimumStrengthStar5.setOnClickListener {
+                if(!minimumStrengthStars[4]){ setMinimumStrengthClick(true,StrengthValue.FOUR_AND_HALF.value,5) }
+                else{setMinimumStrengthClick(false,StrengthValue.FIVE.value,5) }
+            }
+
+            maximumStrengthStar1.setOnClickListener {
+                if(!maximumStrengthStars[0]){ setMaximumStrengthClick(true,StrengthValue.ONE.value,1) }
+                else{ setMaximumStrengthClick(false,StrengthValue.HALF.value,1) }
+            }
+            maximumStrengthStar2.setOnClickListener {
+                if(!maximumStrengthStars[1]){ setMaximumStrengthClick(true,StrengthValue.ONE_AND_HALF.value,2) }
+                else{ setMaximumStrengthClick(false,StrengthValue.TWO.value,2) }
+            }
+            maximumStrengthStar3.setOnClickListener {
+                if(!maximumStrengthStars[2]){ setMaximumStrengthClick(true,StrengthValue.TWO_AND_HALF.value,3) }
+                else{ setMaximumStrengthClick(false,StrengthValue.THREE.value,3) }
+            }
+            maximumStrengthStar4.setOnClickListener {
+                if(!maximumStrengthStars[3]){ setMaximumStrengthClick(true,StrengthValue.THREE_AND_HALF.value,4) }
+                else{ setMaximumStrengthClick(false,StrengthValue.FOUR.value,4) }
+            }
+            maximumStrengthStar5.setOnClickListener {
+                if(!maximumStrengthStars[4]){ setMaximumStrengthClick(true,StrengthValue.FOUR_AND_HALF.value,5) }
+                else{ setMaximumStrengthClick(false,StrengthValue.FIVE.value,5) }
+            }
+
+            generateButton.setOnClickListener {
+
+                initList(context,selectedClubsList,selectedCountryForFilter,selectedDivisionForFilter,minimumStrengthForFilter, maximumStrengthForFilter,selectedSexForFilter)
+                if (selectedClubsList.isNotEmpty()) {
+                    setClubs(checkClubs(context,rand(selectedClubsList), rand(selectedClubsList)))
+                    selectedClubsList.clear()
+                }
+                else showToast(context,R.string.Not_found)
+            }
+
+            advFilter.setOnClickListener { changeFragment(AdvancedGenerateFragment(), gameId,false) }
         }
 
-        binding.advFilter.setOnClickListener { changeFragment(AdvancedGenerateFragment(), gameId,false) }
     }
 
     private fun initValues() {
 
-        countryListForSpinner = when (gameId) {
-            GameId.FC24.ordinal -> countryListForSpinnerFifa24
-            GameId.FIFA23.ordinal -> countryListForSpinnerFifa23
-            GameId.FIFA22.ordinal -> countryListForSpinnerFifa22
-            GameId.FC25.ordinal -> countryListForSpinnerFifa25
-            else -> countryListForSpinnerFifa25
-        }
-        clubList = when (gameId) {
-            GameId.FC24.ordinal -> loadClubsFromJson(context,getString(R.string.clubs24_json))
-            GameId.FIFA23.ordinal -> loadClubsFromJson(context,getString(R.string.clubs23_json))
-            GameId.FIFA22.ordinal -> loadClubsFromJson(context,getString(R.string.clubs22_json))
-            GameId.FC25.ordinal -> loadClubsFromJson(context,getString(R.string.clubs25_json))
-            else -> loadClubsFromJson(context,getString(R.string.clubs25_json))
-        }
+        countryListForSpinner = mapOf(
+            GameId.FC24.ordinal to countryListForSpinnerFifa24,
+            GameId.FIFA23.ordinal to countryListForSpinnerFifa23,
+            GameId.FIFA22.ordinal to countryListForSpinnerFifa22,
+            GameId.FC25.ordinal to countryListForSpinnerFifa25
+        ).getOrDefault(gameId, countryListForSpinnerFifa25)
+
+        clubList = loadClubsFromJson(context, getString(clubsJsonFile))
 
         selectedSexForFilter = getString(R.string.All_sex)
 
@@ -164,116 +151,100 @@ class GenerateFragment : Fragment() {
         selectedCountryForFilter = getStandardStringByValue(context,getString(R.string.All_countries))
         selectedDivisionForFilter = getStandardStringByValue(context,getString(R.string.All_divisions))
 
-        divisionListForSpinner.add(getString(R.string.All_divisions))
+        divisionListForSpinner.apply {
+            clear()
+            add(getString(R.string.All_divisions))
+        }
 
         val spinnerCountryAdapter = CountrySpinnerAdapter(context,countryListForSpinner)
         val spinnerDivisionAdapter = DivisionSpinnerAdapter(context, divisionListForSpinner)
         val spinnerGameAdapter = GameSpinnerAdapter(context, gameIconsForSpinner)
 
-        binding.spinnerCountry.adapter = spinnerCountryAdapter
-        binding.spinnerDivision.adapter = spinnerDivisionAdapter
-        binding.spinnerGame.adapter = spinnerGameAdapter
+        binding.apply {
 
-        binding.spinnerGame.setSelection(gameId)
+            spinnerCountry.adapter = spinnerCountryAdapter
+            spinnerDivision.adapter = spinnerDivisionAdapter
+            spinnerGame.adapter = spinnerGameAdapter
+            spinnerGame.setSelection(gameId)
 
-        binding.spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                selectedCountryForFilter = getStandardStringByValue(context,countryListForSpinner[position].text)
-                selectedDivisionForFilter = getStandardStringByValue(context,getString(R.string.All_divisions))
+                    selectedCountryForFilter = getStandardStringByValue(context,countryListForSpinner[position].text)
+                    selectedDivisionForFilter = getStandardStringByValue(context,getString(R.string.All_divisions))
 
-                divisionListForSpinner.clear()
-                divisionListForSpinner.add(getString(R.string.All_divisions))
-
-                for(i in clubList){
-                    if(i.country == selectedCountryForFilter && !divisionListForSpinner.contains(i.division)){
-                        divisionListForSpinner.add(i.division)
+                    divisionListForSpinner.apply {
+                        clear()
+                        add(getString(R.string.All_divisions))
                     }
-                }
 
-                if(divisionListForSpinner.size == 2){
-                    divisionListForSpinner.removeAt(0)
+                    clubList.filter { it.country == selectedCountryForFilter } // фільтруємо за країною
+                        .map { it.division } // отримуємо тільки дивізії
+                        .distinct() // уникаємо дублювання
+                        .forEach { division ->
+                            if (!divisionListForSpinner.contains(division)) {
+                                divisionListForSpinner.add(division)
+                            }
+                        }
+
+                    if (divisionListForSpinner.size == 2) divisionListForSpinner.removeAt(0)
                     spinnerDivisionAdapter.notifyDataSetChanged()
-                }
-                else spinnerDivisionAdapter.notifyDataSetChanged()
-
-                binding.spinnerDivision.setSelection(0)
-                setStrengthMinMaxStar()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-        }
-        binding.spinnerDivision.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedDivisionForFilter = if(divisionListForSpinner[position] == getString(R.string.All_divisions)){
-                    getStandardStringByValue(context,divisionListForSpinner[position])
-                } else divisionListForSpinner[position]
-
-                setStrengthMinMaxStar()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-        }
-        binding.spinnerGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(gameId != position){
-                    gameId = position
-                    initValues()
-                    initSpinners()
+                    binding.spinnerDivision.setSelection(0)
+                    setStrengthMinMaxStar()
                 }
 
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            }
+            spinnerDivision.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    selectedDivisionForFilter = if(divisionListForSpinner[position] == getString(R.string.All_divisions)){
+                        getStandardStringByValue(context,divisionListForSpinner[position])
+                    } else divisionListForSpinner[position]
+
+                    setStrengthMinMaxStar()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            }
+            spinnerGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    if(gameId != position){
+                        gameId = position
+                        initValues()
+                        initSpinners()
+                    }
+
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
 
         }
     }
 
     private fun setClubs(randClubs: RandClubs){
 
-        binding.logoFirstClub.setImageResource(selectedClubsList[randClubs.firstClub].logoId)
-        binding.nameFirstClub.text = selectedClubsList[randClubs.firstClub].name
-        binding.divisionFirstClub.text = selectedClubsList[randClubs.firstClub].division
-        binding.countryFirstClub.text = getLocalizedStringByValue(context,selectedClubsList[randClubs.firstClub].country)
+        val strength1 = getStrengthValue(selectedClubsList[randClubs.firstClub].strength)
+        val strength2 = getStrengthValue(selectedClubsList[randClubs.secondClub].strength)
 
-        binding.logoSecondClub.setImageResource(selectedClubsList[randClubs.secondClub].logoId)
-        binding.nameSecondClub.text = selectedClubsList[randClubs.secondClub].name
-        binding.divisionSecondClub.text = selectedClubsList[randClubs.secondClub].division
-        binding.countrySecondClub.text = getLocalizedStringByValue(context,selectedClubsList[randClubs.secondClub].country)
+        binding.apply {
+            logoFirstClub.setImageResource(selectedClubsList[randClubs.firstClub].logoId)
+            nameFirstClub.text = selectedClubsList[randClubs.firstClub].name
+            divisionFirstClub.text = selectedClubsList[randClubs.firstClub].division
+            countryFirstClub.text = getLocalizedStringByValue(context,selectedClubsList[randClubs.firstClub].country)
 
-        var strength1 = StrengthValue.HALF.value
-        var strength2 = StrengthValue.HALF.value
-
-
-        when (selectedClubsList[randClubs.firstClub].strength) {
-            StrengthValue.HALF.value -> strength1 = StrengthValue.HALF.value
-            StrengthValue.ONE.value -> strength1 = StrengthValue.ONE.value
-            StrengthValue.ONE_AND_HALF.value -> strength1 = StrengthValue.ONE_AND_HALF.value
-            StrengthValue.TWO.value -> strength1 = StrengthValue.TWO.value
-            StrengthValue.TWO_AND_HALF.value -> strength1 = StrengthValue.TWO_AND_HALF.value
-            StrengthValue.THREE.value -> strength1 = StrengthValue.THREE.value
-            StrengthValue.THREE_AND_HALF.value -> strength1 =  StrengthValue.THREE_AND_HALF.value
-            StrengthValue.FOUR.value -> strength1 =  StrengthValue.FOUR.value
-            StrengthValue.FOUR_AND_HALF.value -> strength1 =   StrengthValue.FOUR_AND_HALF.value
-            StrengthValue.FIVE.value -> strength1 = StrengthValue.FIVE.value
-        }
-        when (selectedClubsList[randClubs.secondClub].strength) {
-            StrengthValue.HALF.value -> strength2 = StrengthValue.HALF.value
-            StrengthValue.ONE.value -> strength2 = StrengthValue.ONE.value
-            StrengthValue.ONE_AND_HALF.value -> strength2 = StrengthValue.ONE_AND_HALF.value
-            StrengthValue.TWO.value -> strength2 = StrengthValue.TWO.value
-            StrengthValue.TWO_AND_HALF.value -> strength2 = StrengthValue.TWO_AND_HALF.value
-            StrengthValue.THREE.value -> strength2 = StrengthValue.THREE.value
-            StrengthValue.THREE_AND_HALF.value -> strength2 =  StrengthValue.THREE_AND_HALF.value
-            StrengthValue.FOUR.value -> strength2 =  StrengthValue.FOUR.value
-            StrengthValue.FOUR_AND_HALF.value -> strength2 =   StrengthValue.FOUR_AND_HALF.value
-            StrengthValue.FIVE.value -> strength2 = StrengthValue.FIVE.value
+            logoSecondClub.setImageResource(selectedClubsList[randClubs.secondClub].logoId)
+            nameSecondClub.text = selectedClubsList[randClubs.secondClub].name
+            divisionSecondClub.text = selectedClubsList[randClubs.secondClub].division
+            countrySecondClub.text = getLocalizedStringByValue(context,selectedClubsList[randClubs.secondClub].country)
         }
 
-        strengthStarSet(binding,strength1,listFirstClubStars[0],listFirstClubStars[1],listFirstClubStars[2],listFirstClubStars[3],listFirstClubStars[4])
-        strengthStarSet(binding,strength2,listSecondClubStars[0],listSecondClubStars[1],listSecondClubStars[2],listSecondClubStars[3],listSecondClubStars[4])
+        strengthStarSet(binding,strength1,listFirstClubStars)
+        strengthStarSet(binding,strength2,listSecondClubStars)
 
         when(selectedClubsList[randClubs.firstClub].sex){
             getString(R.string.Man)-> binding.sexImage.setImageResource(R.drawable.male_icon)
@@ -291,8 +262,8 @@ class GenerateFragment : Fragment() {
         minStarSet = selectedClubsList.minOf { it.strength}
         maxStarSet = selectedClubsList.maxOf { it.strength}
 
-        strengthStarSet( binding,minStarSet,listMinimumStrengthStars[0],listMinimumStrengthStars[1],listMinimumStrengthStars[2],listMinimumStrengthStars[3],listMinimumStrengthStars[4])
-        strengthStarSet( binding,maxStarSet,listMaximumStrengthStars[0],listMaximumStrengthStars[1],listMaximumStrengthStars[2],listMaximumStrengthStars[3],listMaximumStrengthStars[4])
+        strengthStarSet(binding,minStarSet,listMinimumStrengthStars)
+        strengthStarSet(binding,maxStarSet,listMaximumStrengthStars)
 
         minimumStrengthForFilter = minStarSet
         maximumStrengthForFilter = maxStarSet
@@ -301,62 +272,64 @@ class GenerateFragment : Fragment() {
 
     }
     private fun setMinimumStrengthClick(starBool:Boolean,strength: Double,starCount:Int){
-        strengthStarSet(binding,strength,listMinimumStrengthStars[0],listMinimumStrengthStars[1],listMinimumStrengthStars[2],listMinimumStrengthStars[3],listMinimumStrengthStars[4])
+        strengthStarSet(binding,strength,listMinimumStrengthStars)
         minimumStrengthForFilter = strength
 
         when(starCount){
-            1-> minimumStrengthStar1 = starBool
-            2-> minimumStrengthStar2 = starBool
-            3-> minimumStrengthStar3 = starBool
-            4-> minimumStrengthStar4 = starBool
-            5-> minimumStrengthStar5 = starBool
+            1-> minimumStrengthStars[0] = starBool
+            2-> minimumStrengthStars[1] = starBool
+            3-> minimumStrengthStars[2] = starBool
+            4-> minimumStrengthStars[3] = starBool
+            5-> minimumStrengthStars[4] = starBool
 
         }
 
-        if(minimumStrengthForFilter < minStarSet) {
-            strengthStarSet( binding,minStarSet,listMinimumStrengthStars[0],listMinimumStrengthStars[1],listMinimumStrengthStars[2],listMinimumStrengthStars[3],listMinimumStrengthStars[4])
-            minimumStrengthForFilter = minStarSet
+        when {
+            minimumStrengthForFilter < minStarSet -> {
+                strengthStarSet(binding, minStarSet, listMinimumStrengthStars)
+                minimumStrengthForFilter = minStarSet
+            }
+            minimumStrengthForFilter > maxStarSet -> {
+                strengthStarSet(binding, maxStarSet, listMinimumStrengthStars)
+                minimumStrengthForFilter = maxStarSet
+            }
         }
 
-        else if(minimumStrengthForFilter > maxStarSet) {
-            strengthStarSet( binding,maxStarSet,listMinimumStrengthStars[0],listMinimumStrengthStars[1],listMinimumStrengthStars[2],listMinimumStrengthStars[3],listMinimumStrengthStars[4])
-            minimumStrengthForFilter = maxStarSet
-        }
 
         if(minimumStrengthForFilter > maximumStrengthForFilter){
             maximumStrengthForFilter = minimumStrengthForFilter
-            strengthStarSet( binding,maximumStrengthForFilter,listMaximumStrengthStars[0],listMaximumStrengthStars[1],listMaximumStrengthStars[2],listMaximumStrengthStars[3],listMaximumStrengthStars[4])
+            strengthStarSet(binding,maximumStrengthForFilter,listMaximumStrengthStars)
         }
 
 
     }
     private fun setMaximumStrengthClick(starBool:Boolean,strength: Double,starCount:Int){
-        strengthStarSet(binding,strength,listMaximumStrengthStars[0],listMaximumStrengthStars[1],listMaximumStrengthStars[2],listMaximumStrengthStars[3],listMaximumStrengthStars[4])
+        strengthStarSet(binding,strength,listMaximumStrengthStars)
         maximumStrengthForFilter = strength
 
         when(starCount){
-            1-> maximumStrengthStar1 = starBool
-            2-> maximumStrengthStar2 = starBool
-            3-> maximumStrengthStar3 = starBool
-            4-> maximumStrengthStar4 = starBool
-            5-> maximumStrengthStar5 = starBool
+            1-> maximumStrengthStars[0] = starBool
+            2-> maximumStrengthStars[1] = starBool
+            3-> maximumStrengthStars[2] = starBool
+            4-> maximumStrengthStars[3] = starBool
+            5-> maximumStrengthStars[4] = starBool
 
         }
 
         if(maximumStrengthForFilter < minStarSet) {
-            strengthStarSet( binding,minStarSet,listMaximumStrengthStars[0],listMaximumStrengthStars[1],listMaximumStrengthStars[2],listMaximumStrengthStars[3],listMaximumStrengthStars[4])
+            strengthStarSet(binding,minStarSet,listMaximumStrengthStars)
             maximumStrengthForFilter = minStarSet
         }
 
         else if(maximumStrengthForFilter > maxStarSet) {
-            strengthStarSet( binding,maxStarSet,listMaximumStrengthStars[0],listMaximumStrengthStars[1],listMaximumStrengthStars[2],listMaximumStrengthStars[3],listMaximumStrengthStars[4])
+            strengthStarSet(binding,maxStarSet,listMaximumStrengthStars)
             maximumStrengthForFilter = maxStarSet
         }
 
         if(minimumStrengthForFilter > maximumStrengthForFilter){
             minimumStrengthForFilter = maximumStrengthForFilter
-            strengthStarSet( binding,maximumStrengthForFilter,listMaximumStrengthStars[0],listMaximumStrengthStars[1],listMaximumStrengthStars[2],listMaximumStrengthStars[3],listMaximumStrengthStars[4])
-            strengthStarSet( binding,minimumStrengthForFilter,listMinimumStrengthStars[0],listMinimumStrengthStars[1],listMinimumStrengthStars[2],listMinimumStrengthStars[3],listMinimumStrengthStars[4])
+            strengthStarSet(binding,maximumStrengthForFilter,listMaximumStrengthStars)
+            strengthStarSet(binding,minimumStrengthForFilter,listMinimumStrengthStars)
         }
 
     }

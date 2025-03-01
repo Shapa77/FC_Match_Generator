@@ -34,7 +34,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/club_default"
-                tools:srcCompat="@drawable/club_default"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -139,8 +138,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/club_default"
-                tools:ignore="ContentDescription,ImageContrastCheck"
-                tools:srcCompat="@drawable/club_default" />
+                tools:ignore="ContentDescription,ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/advanced_name_second_club"

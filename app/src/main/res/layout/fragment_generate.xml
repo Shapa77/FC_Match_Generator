@@ -34,8 +34,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/club_default"
-                tools:srcCompat="@drawable/club_default"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@drawable/club_default" />
 
             <TextView
                 android:id="@+id/name_first_club"

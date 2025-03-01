@@ -3,6 +3,7 @@ package com.shapacreations.generatorfifa22
 import android.content.Context
 import android.content.res.Configuration
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.google.gson.JsonParser
@@ -10,14 +11,11 @@ import java.util.Locale
 import kotlin.random.Random
 
 
-fun rand(selectedClubsList:MutableList<ClubModel>):Int{
-    var randomClubIndex = 0
-    if (selectedClubsList.size>0){ randomClubIndex =  Random.nextInt(selectedClubsList.size) }
-    return randomClubIndex
-}
+fun rand(selectedClubsList:MutableList<ClubModel>):Int{ return if (selectedClubsList.isNotEmpty()) Random.nextInt(selectedClubsList.size) else 0 }
 fun changeFragment(newFragment: Fragment, gameIdLocal:Int, addToBackStack:Boolean) {
-    if(!addToBackStack) GetActivity.activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.FragmentContainer, newFragment)?.commit()
-    else GetActivity.activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.FragmentContainer, newFragment)?.addToBackStack(null)?.commit()
+    val transaction = GetActivity.activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.FragmentContainer, newFragment)
+    if (addToBackStack) transaction?.addToBackStack(null)
+    transaction?.commit()
     gameId = gameIdLocal
 }
 fun loadClubsFromJson(context: Context, fileName:String): List<ClubModel> {
@@ -36,155 +34,50 @@ fun loadClubsFromJson(context: Context, fileName:String): List<ClubModel> {
         ClubModel(name, logoIdInt, country, division, strength, sex)
     }
 }
-fun initList(context:Context,selectedClubsList:MutableList<ClubModel>,selectedCountryForFilter:String,selectedDivisionForFilter:String,minimumStrengthForFilter:Double,maximumStrengthForFilter:Double,selectedSexForFilter:String){
+fun initList(context: Context, selectedClubsList: MutableList<ClubModel>, selectedCountryForFilter: String, selectedDivisionForFilter: String, minimumStrengthForFilter: Double, maximumStrengthForFilter: Double, selectedSexForFilter: String) {
+    val allCountries = getStandardStringByValue(context, context.getString(R.string.All_countries))
+    val allDivisions = getStandardStringByValue(context, context.getString(R.string.All_divisions))
+    val allSex = context.getString(R.string.All_sex)
 
-    if(selectedCountryForFilter == getStandardStringByValue(context,context.getString(R.string.All_countries)) && selectedDivisionForFilter == getStandardStringByValue(context,context.getString(R.string.All_divisions)) && selectedSexForFilter == context.getString(R.string.All_sex)){
-        for(i in clubList.indices) {
-            if(clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter) {
-                selectedClubsList.add(clubList[i])
-            }
-        }
-    }
-    else if(selectedCountryForFilter == getStandardStringByValue(context,context.getString(R.string.All_countries))&& selectedDivisionForFilter == getStandardStringByValue(context,context.getString(R.string.All_divisions))&& selectedSexForFilter != context.getString(R.string.All_sex)){
-        for(i in clubList.indices) {
-            if(clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter && clubList[i].sex == selectedSexForFilter) {
-                selectedClubsList.add(clubList[i])
-            }
-        }
-    }
-    else if(selectedCountryForFilter != getStandardStringByValue(context,context.getString(R.string.All_countries))&& selectedDivisionForFilter == getStandardStringByValue(context,context.getString(R.string.All_divisions))&& selectedSexForFilter == context.getString(R.string.All_sex)){
-        for(i in clubList.indices) {
-            if(clubList[i].country == selectedCountryForFilter && clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter){
-                selectedClubsList.add(clubList[i])
-            }
-        }
-    }
-    else if(selectedCountryForFilter != getStandardStringByValue(context,context.getString(R.string.All_countries)) && selectedDivisionForFilter == getStandardStringByValue(context,context.getString(R.string.All_divisions)) && selectedSexForFilter != context.getString(R.string.All_sex)){
-        for(i in clubList.indices) {
-            if(clubList[i].country == selectedCountryForFilter && clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter && clubList[i].sex == selectedSexForFilter){
-                selectedClubsList.add(clubList[i])
-            }
-        }
-    }
+    for (club in clubList) {
+        val matchesCountry = selectedCountryForFilter == allCountries || club.country == selectedCountryForFilter
+        val matchesDivision = selectedDivisionForFilter == allDivisions || club.division == selectedDivisionForFilter
+        val matchesSex = selectedSexForFilter == allSex || club.sex == selectedSexForFilter
+        val matchesStrength = club.strength in minimumStrengthForFilter..maximumStrengthForFilter
 
-    else{
-        for(i in clubList.indices) {
-            if(clubList[i].country == selectedCountryForFilter && clubList[i].division == selectedDivisionForFilter && clubList[i].strength in minimumStrengthForFilter..maximumStrengthForFilter){
-                selectedClubsList.add(clubList[i])
-            }
+        if (matchesCountry && matchesDivision && matchesSex && matchesStrength) {
+            selectedClubsList.add(club)
         }
     }
 }
-fun strengthStarSet(binding:ViewBinding,strength:Double, star1:String, star2:String, star3:String, star4:String, star5:String) {
+fun strengthStarSet(binding: ViewBinding, strength: Double, strengthStarsList: List<String>) {
+    val stars = strengthStarsList.map {
+        val field = binding::class.java.getDeclaredField(it)
+        field.isAccessible = true
+        field.get(binding) as ImageView
+    }
 
-    val star1ID = binding::class.java.getDeclaredField(star1)
-    val star2ID = binding::class.java.getDeclaredField(star2)
-    val star3ID = binding::class.java.getDeclaredField(star3)
-    val star4ID = binding::class.java.getDeclaredField(star4)
-    val star5ID = binding::class.java.getDeclaredField(star5)
+    // Масив ресурсів для зірок
+    val starImages = when (strength) {
+        StrengthValue.ZERO.value -> listOf(R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty)
+        StrengthValue.HALF.value -> listOf(R.drawable.star_half_full, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty)
+        StrengthValue.ONE.value -> listOf(R.drawable.star_full, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty)
+        StrengthValue.ONE_AND_HALF.value -> listOf(R.drawable.star_full, R.drawable.star_half_full, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty)
+        StrengthValue.TWO.value -> listOf(R.drawable.star_full, R.drawable.star_full, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty)
+        StrengthValue.TWO_AND_HALF.value -> listOf(R.drawable.star_full, R.drawable.star_full, R.drawable.star_half_full, R.drawable.star_empty, R.drawable.star_empty)
+        StrengthValue.THREE.value -> listOf(R.drawable.star_full, R.drawable.star_full, R.drawable.star_full, R.drawable.star_empty, R.drawable.star_empty)
+        StrengthValue.THREE_AND_HALF.value -> listOf(R.drawable.star_full, R.drawable.star_full, R.drawable.star_full, R.drawable.star_half_full, R.drawable.star_empty)
+        StrengthValue.FOUR.value -> listOf(R.drawable.star_full, R.drawable.star_full, R.drawable.star_full, R.drawable.star_full, R.drawable.star_empty)
+        StrengthValue.FOUR_AND_HALF.value -> listOf(R.drawable.star_full, R.drawable.star_full, R.drawable.star_full, R.drawable.star_full, R.drawable.star_half_full)
+        StrengthValue.FIVE.value -> listOf(R.drawable.star_full, R.drawable.star_full, R.drawable.star_full, R.drawable.star_full, R.drawable.star_full)
+        else -> listOf(R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty, R.drawable.star_empty)
+    }
 
-    star1ID.isAccessible = true
-    star2ID.isAccessible = true
-    star3ID.isAccessible = true
-    star4ID.isAccessible = true
-    star5ID.isAccessible = true
-
-    val imageStar1 = star1ID.get(binding) as ImageView
-    val imageStar2 = star2ID.get(binding) as ImageView
-    val imageStar3 = star3ID.get(binding) as ImageView
-    val imageStar4 = star4ID.get(binding) as ImageView
-    val imageStar5 = star5ID.get(binding) as ImageView
-
-    when (strength) {
-        StrengthValue.ZERO.value -> {
-            imageStar1.setImageResource(R.drawable.star_empty)
-            imageStar2.setImageResource(R.drawable.star_empty)
-            imageStar3.setImageResource(R.drawable.star_empty)
-            imageStar4.setImageResource(R.drawable.star_empty)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-        StrengthValue.HALF.value -> {
-            imageStar1.setImageResource(R.drawable.star_half_full)
-            imageStar2.setImageResource(R.drawable.star_empty)
-            imageStar3.setImageResource(R.drawable.star_empty)
-            imageStar4.setImageResource(R.drawable.star_empty)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-
-        StrengthValue.ONE.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_empty)
-            imageStar3.setImageResource(R.drawable.star_empty)
-            imageStar4.setImageResource(R.drawable.star_empty)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-
-        StrengthValue.ONE_AND_HALF.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_half_full)
-            imageStar3.setImageResource(R.drawable.star_empty)
-            imageStar4.setImageResource(R.drawable.star_empty)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-
-        StrengthValue.TWO.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_full)
-            imageStar3.setImageResource(R.drawable.star_empty)
-            imageStar4.setImageResource(R.drawable.star_empty)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-
-        StrengthValue.TWO_AND_HALF.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_full)
-            imageStar3.setImageResource(R.drawable.star_half_full)
-            imageStar4.setImageResource(R.drawable.star_empty)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-
-        StrengthValue.THREE.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_full)
-            imageStar3.setImageResource(R.drawable.star_full)
-            imageStar4.setImageResource(R.drawable.star_empty)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-
-        StrengthValue.THREE_AND_HALF.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_full)
-            imageStar3.setImageResource(R.drawable.star_full)
-            imageStar4.setImageResource(R.drawable.star_half_full)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-
-        StrengthValue.FOUR.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_full)
-            imageStar3.setImageResource(R.drawable.star_full)
-            imageStar4.setImageResource(R.drawable.star_full)
-            imageStar5.setImageResource(R.drawable.star_empty)
-        }
-
-        StrengthValue.FOUR_AND_HALF.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_full)
-            imageStar3.setImageResource(R.drawable.star_full)
-            imageStar4.setImageResource(R.drawable.star_full)
-            imageStar5.setImageResource(R.drawable.star_half_full)
-        }
-
-        StrengthValue.FIVE.value -> {
-            imageStar1.setImageResource(R.drawable.star_full)
-            imageStar2.setImageResource(R.drawable.star_full)
-            imageStar3.setImageResource(R.drawable.star_full)
-            imageStar4.setImageResource(R.drawable.star_full)
-            imageStar5.setImageResource(R.drawable.star_full)
-        }
+    // Встановлюємо зображення для кожної зірки
+    stars.forEachIndexed { index, starImage ->
+        starImage.setImageResource(starImages[index])
     }
 }
-
 fun getStandardStringByValue(context: Context, value: String): String {
     val fields = R.string::class.java.fields
     var key = ""
@@ -210,7 +103,6 @@ fun getStandardStringByValue(context: Context, value: String): String {
         value
     }
 }
-
 fun getLocalizedStringByValue(context: Context, standardValue: String): String {
     val defaultLocale = Locale.ENGLISH
     val config = Configuration(context.resources.configuration)
@@ -235,7 +127,22 @@ fun getLocalizedStringByValue(context: Context, standardValue: String): String {
         standardValue
     }
 }
-
+fun getStrengthValue(clubStrength: Double): Double {
+    return when (clubStrength) {
+        StrengthValue.HALF.value -> StrengthValue.HALF.value
+        StrengthValue.ONE.value -> StrengthValue.ONE.value
+        StrengthValue.ONE_AND_HALF.value -> StrengthValue.ONE_AND_HALF.value
+        StrengthValue.TWO.value -> StrengthValue.TWO.value
+        StrengthValue.TWO_AND_HALF.value -> StrengthValue.TWO_AND_HALF.value
+        StrengthValue.THREE.value -> StrengthValue.THREE.value
+        StrengthValue.THREE_AND_HALF.value -> StrengthValue.THREE_AND_HALF.value
+        StrengthValue.FOUR.value -> StrengthValue.FOUR.value
+        StrengthValue.FOUR_AND_HALF.value -> StrengthValue.FOUR_AND_HALF.value
+        StrengthValue.FIVE.value -> StrengthValue.FIVE.value
+        else -> clubStrength
+    }
+}
+fun showToast(context: Context, messageId: Int) { Toast.makeText(context, context.getString(messageId), Toast.LENGTH_SHORT).show() }
 
 
 
