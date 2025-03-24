@@ -3,6 +3,7 @@ package com.shapacreations.generatorfifa22
 import android.content.Context
 import android.content.res.Configuration
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
@@ -141,6 +142,12 @@ fun getStrengthValue(clubStrength: Double): Double {
         StrengthValue.FIVE.value -> StrengthValue.FIVE.value
         else -> clubStrength
     }
+}
+fun resetClubInfo(logo: ImageView, name: TextView, division: TextView, country: TextView) {
+    logo.setImageResource(R.drawable.club_default)
+    name.text = null
+    division.text = null
+    country.text = null
 }
 fun showToast(context: Context, messageId: Int) { Toast.makeText(context, context.getString(messageId), Toast.LENGTH_SHORT).show() }
 

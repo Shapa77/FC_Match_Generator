@@ -15,16 +15,15 @@ class GenerateFragment : Fragment() {
 
     private lateinit var context: Context
 
-
     private lateinit var selectedCountryForFilter:String
     private lateinit var selectedDivisionForFilter:String
     private lateinit var selectedSexForFilter:String
 
-    private lateinit var listFirstClubStars:List<String>
-    private lateinit var listSecondClubStars:List<String>
+    private lateinit var listFirstClubStarsID:List<String>
+    private lateinit var listSecondClubStarsID:List<String>
 
-    private lateinit var listMinimumStrengthStars:List<String>
-    private lateinit var listMaximumStrengthStars:List<String>
+    private lateinit var listMinimumStrengthStarsID:List<String>
+    private lateinit var listMaximumStrengthStarsID:List<String>
 
     private val divisionListForSpinner:ArrayList<String> = arrayListOf()
     private val selectedClubsList = mutableListOf<ClubModel>()
@@ -39,8 +38,6 @@ class GenerateFragment : Fragment() {
     private val maximumStrengthStars = mutableListOf(false, false, false, false, false)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {return binding.root }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { super.onViewCreated(view, savedInstanceState)
 
@@ -119,26 +116,26 @@ class GenerateFragment : Fragment() {
 
         selectedSexForFilter = getString(R.string.All_sex)
 
-        listFirstClubStars = listOf(
+        listFirstClubStarsID = listOf(
             getString(R.string.firstClubStar1),
             getString(R.string.firstClubStar2),
             getString(R.string.firstClubStar3),
             getString(R.string.firstClubStar4),
             getString(R.string.firstClubStar5))
-        listSecondClubStars = listOf(
+        listSecondClubStarsID = listOf(
             getString(R.string.secondClubStar1),
             getString(R.string.secondClubStar2),
             getString(R.string.secondClubStar3),
             getString(R.string.secondClubStar4),
             getString(R.string.secondClubStar5))
 
-        listMinimumStrengthStars = listOf(
+        listMinimumStrengthStarsID = listOf(
             getString(R.string.minimumStrengthStar1),
             getString(R.string.minimumStrengthStar2),
             getString(R.string.minimumStrengthStar3),
             getString(R.string.minimumStrengthStar4),
             getString(R.string.minimumStrengthStar5))
-        listMaximumStrengthStars = listOf(
+        listMaximumStrengthStarsID = listOf(
             getString(R.string.maximumStrengthStar1),
             getString(R.string.maximumStrengthStar2),
             getString(R.string.maximumStrengthStar3),
@@ -164,8 +161,12 @@ class GenerateFragment : Fragment() {
 
             spinnerCountry.adapter = spinnerCountryAdapter
             spinnerDivision.adapter = spinnerDivisionAdapter
-            spinnerGame.adapter = spinnerGameAdapter
-            spinnerGame.setSelection(gameId)
+
+            spinnerGame.apply {
+                adapter = spinnerGameAdapter
+                setSelection(gameId)
+            }
+
 
             spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -243,8 +244,8 @@ class GenerateFragment : Fragment() {
             countrySecondClub.text = getLocalizedStringByValue(context,selectedClubsList[randClubs.secondClub].country)
         }
 
-        strengthStarSet(binding,strength1,listFirstClubStars)
-        strengthStarSet(binding,strength2,listSecondClubStars)
+        strengthStarSet(binding,strength1,listFirstClubStarsID)
+        strengthStarSet(binding,strength2,listSecondClubStarsID)
 
         when(selectedClubsList[randClubs.firstClub].sex){
             getString(R.string.Man)-> binding.sexImage.setImageResource(R.drawable.male_icon)
@@ -262,8 +263,8 @@ class GenerateFragment : Fragment() {
         minStarSet = selectedClubsList.minOf { it.strength}
         maxStarSet = selectedClubsList.maxOf { it.strength}
 
-        strengthStarSet(binding,minStarSet,listMinimumStrengthStars)
-        strengthStarSet(binding,maxStarSet,listMaximumStrengthStars)
+        strengthStarSet(binding,minStarSet,listMinimumStrengthStarsID)
+        strengthStarSet(binding,maxStarSet,listMaximumStrengthStarsID)
 
         minimumStrengthForFilter = minStarSet
         maximumStrengthForFilter = maxStarSet
@@ -272,25 +273,18 @@ class GenerateFragment : Fragment() {
 
     }
     private fun setMinimumStrengthClick(starBool:Boolean,strength: Double,starCount:Int){
-        strengthStarSet(binding,strength,listMinimumStrengthStars)
+        strengthStarSet(binding,strength,listMinimumStrengthStarsID)
         minimumStrengthForFilter = strength
 
-        when(starCount){
-            1-> minimumStrengthStars[0] = starBool
-            2-> minimumStrengthStars[1] = starBool
-            3-> minimumStrengthStars[2] = starBool
-            4-> minimumStrengthStars[3] = starBool
-            5-> minimumStrengthStars[4] = starBool
-
-        }
+        if (starCount in 1..5) { minimumStrengthStars[starCount - 1] = starBool }
 
         when {
             minimumStrengthForFilter < minStarSet -> {
-                strengthStarSet(binding, minStarSet, listMinimumStrengthStars)
+                strengthStarSet(binding, minStarSet, listMinimumStrengthStarsID)
                 minimumStrengthForFilter = minStarSet
             }
             minimumStrengthForFilter > maxStarSet -> {
-                strengthStarSet(binding, maxStarSet, listMinimumStrengthStars)
+                strengthStarSet(binding, maxStarSet, listMinimumStrengthStarsID)
                 minimumStrengthForFilter = maxStarSet
             }
         }
@@ -298,38 +292,32 @@ class GenerateFragment : Fragment() {
 
         if(minimumStrengthForFilter > maximumStrengthForFilter){
             maximumStrengthForFilter = minimumStrengthForFilter
-            strengthStarSet(binding,maximumStrengthForFilter,listMaximumStrengthStars)
+            strengthStarSet(binding,maximumStrengthForFilter,listMaximumStrengthStarsID)
         }
 
 
     }
     private fun setMaximumStrengthClick(starBool:Boolean,strength: Double,starCount:Int){
-        strengthStarSet(binding,strength,listMaximumStrengthStars)
+        strengthStarSet(binding,strength,listMaximumStrengthStarsID)
         maximumStrengthForFilter = strength
 
-        when(starCount){
-            1-> maximumStrengthStars[0] = starBool
-            2-> maximumStrengthStars[1] = starBool
-            3-> maximumStrengthStars[2] = starBool
-            4-> maximumStrengthStars[3] = starBool
-            5-> maximumStrengthStars[4] = starBool
+        if (starCount in 1..5) { maximumStrengthStars[starCount - 1] = starBool }
 
-        }
 
         if(maximumStrengthForFilter < minStarSet) {
-            strengthStarSet(binding,minStarSet,listMaximumStrengthStars)
+            strengthStarSet(binding,minStarSet,listMaximumStrengthStarsID)
             maximumStrengthForFilter = minStarSet
         }
 
         else if(maximumStrengthForFilter > maxStarSet) {
-            strengthStarSet(binding,maxStarSet,listMaximumStrengthStars)
+            strengthStarSet(binding,maxStarSet,listMaximumStrengthStarsID)
             maximumStrengthForFilter = maxStarSet
         }
 
         if(minimumStrengthForFilter > maximumStrengthForFilter){
             minimumStrengthForFilter = maximumStrengthForFilter
-            strengthStarSet(binding,maximumStrengthForFilter,listMaximumStrengthStars)
-            strengthStarSet(binding,minimumStrengthForFilter,listMinimumStrengthStars)
+            strengthStarSet(binding,maximumStrengthForFilter,listMaximumStrengthStarsID)
+            strengthStarSet(binding,minimumStrengthForFilter,listMinimumStrengthStarsID)
         }
 
     }

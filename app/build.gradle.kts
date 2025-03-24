@@ -5,13 +5,13 @@ plugins {
 
 android {
     namespace = "com.shapacreations.generatorfifa22"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.shapacreations.generatorfifa22"
         minSdk = 24
         targetSdk = 34
-        versionCode = 14
+        versionCode = 16
         versionName = "Beta"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

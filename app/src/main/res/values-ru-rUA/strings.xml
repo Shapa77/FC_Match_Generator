@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Choose_game">Выберите игру!</string>
+    <string name="MINIMUM_STRENGTH">МИНИМАЛЬНЫЙ РЕЙТИНГ</string>
+    <string name="MAXIMUM_STRENGTH">МАКСИМАЛЬНЫЙ РЕЙТИНГ</string>
+    <string name="Country">Страна</string>
+    <string name="Division">Лига</string>
+    <string name="GENERATE_MATCH">СГЕНЕРОВАТЬ</string>
+    <string name="All_divisions">Все лиги</string>
+    <string name="Not_found">Не найдено</string>
+    <string name="ManButton">Мужчины</string>
+    <string name="WomanButton">Женщины</string>
+    <string name="All_sexButton">Все</string>
+    <string name="All_countries">Все страны</string>
+    <string name="Argentina">Аргентина</string>
+    <string name="Australia">Австралия</string>
+    <string name="Austria">Австрия</string>
+    <string name="Belgium">Бельгия</string>
+    <string name="Brazil">Бразилия</string>
+    <string name="China_PR">Китай</string>
+    <string name="Denmark">Дания</string>
+    <string name="England">Англия</string>
+    <string name="France">Франция</string>
+    <string name="Germany">Германия</string>
+    <string name="Netherlands">Нидерланды</string>
+    <string name="India">Индия</string>
+    <string name="International">Международный</string>
+    <string name="Italy">Италия</string>
+    <string name="Japan">Япония</string>
+    <string name="Korea_Republic">Южная Корея</string>
+    <string name="Mexico">Мексика</string>
+    <string name="Norway">Норвегия</string>
+    <string name="Poland">Польша</string>
+    <string name="Portugal">Португалия</string>
+    <string name="Republic_of_Ireland">Ирландия</string>
+    <string name="Rest_of_World">Остальный мир</string>
+    <string name="Romania">Румыния</string>
+    <string name="Saudi_Arabia">Саудовская Аравия</string>
+    <string name="Scotland">Шотландия</string>
+    <string name="Spain">Испания</string>
+    <string name="Sweden">Швеция</string>
+    <string name="Switzerland">Швейцария</string>
+    <string name="Turkey">Турция</string>
+    <string name="United_States">США</string>
+</resources>

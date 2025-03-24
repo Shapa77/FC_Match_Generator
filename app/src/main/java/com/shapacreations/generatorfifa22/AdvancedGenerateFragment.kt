@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.shapacreations.generatorfifa22.databinding.FragmentAdvancedGenerateBinding
 //-------------------------------------------------------------------------------------//
@@ -532,16 +534,7 @@ class AdvancedGenerateFragment : Fragment() {
         strengthStarSet(binding,strength,advancedListMinimumStrengthStars1)
         minimumStrengthForFilter1 = strength
 
-        when(starCount){
-            1-> minimumStrengthStars1[0] = starBool
-            2-> minimumStrengthStars1[1]  = starBool
-            3-> minimumStrengthStars1[2]  = starBool
-            4-> minimumStrengthStars1[3]  = starBool
-            5-> minimumStrengthStars1[4]  = starBool
-
-        }
-
-
+        if (starCount in 1..5) { minimumStrengthStars1[starCount - 1] = starBool }
 
         when {
             minimumStrengthForFilter1 < minStarSet1 -> {
@@ -567,15 +560,7 @@ class AdvancedGenerateFragment : Fragment() {
         strengthStarSet(binding, strength, advancedListMinimumStrengthStars2)
         minimumStrengthForFilter2 = strength
 
-        when(starCount){
-            1-> minimumStrengthStars2[0] = starBool
-            2-> minimumStrengthStars2[1] = starBool
-            3-> minimumStrengthStars2[2] = starBool
-            4-> minimumStrengthStars2[3] = starBool
-            5-> minimumStrengthStars2[4] = starBool
-
-        }
-
+        if (starCount in 1..5) { minimumStrengthStars2[starCount - 1] = starBool }
         when {
             minimumStrengthForFilter2 < minStarSet2 -> {
                 strengthStarSet(binding, minStarSet2, advancedListMinimumStrengthStars2)
@@ -600,14 +585,7 @@ class AdvancedGenerateFragment : Fragment() {
         strengthStarSet(binding, strength, advancedListMaximumStrengthStars1)
         maximumStrengthForFilter1 = strength
 
-        when(starCount){
-            1-> maximumStrengthStars1[0] = starBool
-            2-> maximumStrengthStars1[1] = starBool
-            3-> maximumStrengthStars1[2] = starBool
-            4-> maximumStrengthStars1[3] = starBool
-            5-> maximumStrengthStars1[4] = starBool
-
-        }
+        if (starCount in 1..5) { maximumStrengthStars1[starCount - 1] = starBool }
 
         when {
             maximumStrengthForFilter1 < minStarSet1 -> {
@@ -635,14 +613,8 @@ class AdvancedGenerateFragment : Fragment() {
         strengthStarSet(binding, strength, advancedListMaximumStrengthStars2)
         maximumStrengthForFilter2 = strength
 
-        when(starCount){
-            1-> maximumStrengthStars2[0] = starBool
-            2-> maximumStrengthStars2[1] = starBool
-            3-> maximumStrengthStars2[2] = starBool
-            4-> maximumStrengthStars2[3] = starBool
-            5-> maximumStrengthStars2[4] = starBool
+        if (starCount in 1..5) { maximumStrengthStars2[starCount - 1] = starBool }
 
-        }
 
         when {
             maximumStrengthForFilter2 < minStarSet2 -> {
@@ -667,18 +639,13 @@ class AdvancedGenerateFragment : Fragment() {
     private fun setDefaultClubs(){
 
         binding.apply {
-            advancedLogoFirstClub.setImageResource(R.drawable.club_default)
-            advancedNameFirstClub.text = null
-            advancedDivisionFirstClub.text = null
-            advancedCountryFirstClub.text = null
 
-            advancedLogoSecondClub.setImageResource(R.drawable.club_default)
-            advancedNameSecondClub.text = null
-            advancedDivisionSecondClub.text = null
-            advancedCountrySecondClub.text = null
+            resetClubInfo(advancedLogoFirstClub, advancedNameFirstClub, advancedDivisionFirstClub, advancedCountryFirstClub)
+            resetClubInfo(advancedLogoSecondClub, advancedNameSecondClub, advancedDivisionSecondClub, advancedCountrySecondClub)
 
             advancedSexImage.visibility = View.INVISIBLE
         }
+
         strengthStarSet(binding, StrengthValue.ZERO.value, advancedListFirstClubStars)
         strengthStarSet(binding, StrengthValue.ZERO.value, advancedListSecondClubStars)
 

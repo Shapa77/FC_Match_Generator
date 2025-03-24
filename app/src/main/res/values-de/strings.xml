@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Choose_game">Wähle ein Spiel!</string>
+    <string name="MINIMUM_STRENGTH">MINDEST BEWERTUNG</string>
+    <string name="MAXIMUM_STRENGTH">MAXIMALE BEWERTUNG</string>
+    <string name="Country">Land</string>
+    <string name="Division">Liga</string>
+    <string name="GENERATE_MATCH">ERZEUGEN</string>
+    <string name="All_divisions">Alle Ligen</string>
+    <string name="Not_found">Nicht gefunden</string>
+    <string name="ManButton">Männer</string>
+    <string name="WomanButton">Frauen</string>
+    <string name="All_sexButton">Alle</string>
+    <string name="All_countries">Alle Länder</string>
+    <string name="Argentina">Argentinien</string>
+    <string name="Australia">Australien</string>
+    <string name="Austria">Österreich</string>
+    <string name="Belgium">Belgien</string>
+    <string name="Brazil">Brasilien</string>
+    <string name="China_PR">China</string>
+    <string name="Denmark">Dänemark</string>
+    <string name="England">England</string>
+    <string name="France">Frankreich</string>
+    <string name="Germany">Deutschland</string>
+    <string name="Netherlands">Niederlande</string>
+    <string name="India">Indien</string>
+    <string name="International">Internationales</string>
+    <string name="Italy">Italien</string>
+    <string name="Japan">Japan</string>
+    <string name="Korea_Republic">Südkorea</string>
+    <string name="Mexico">Mexiko</string>
+    <string name="Norway">Norwegen</string>
+    <string name="Poland">Polen</string>
+    <string name="Portugal">Portugal</string>
+    <string name="Republic_of_Ireland">Irland</string>
+    <string name="Rest_of_World">Rest der Welt</string>
+    <string name="Romania">Rumänien</string>
+    <string name="Saudi_Arabia">Saudi-Arabien</string>
+    <string name="Scotland">Schottland</string>
+    <string name="Spain">Spanien</string>
+    <string name="Sweden">Schweden</string>
+    <string name="Switzerland">Schweiz</string>
+    <string name="Turkey">Truthahn</string>
+    <string name="United_States">United States</string>
+</resources>
