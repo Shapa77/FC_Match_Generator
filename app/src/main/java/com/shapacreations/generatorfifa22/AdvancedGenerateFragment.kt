@@ -1,4 +1,4 @@
-package com.shapacreations.generatorfifa22 //Назва пакету
+    package com.shapacreations.generatorfifa22 //Назва пакету
 
 //Імпорт потрібних класів
 import android.content.Context
@@ -8,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import com.shapacreations.generatorfifa22.databinding.FragmentAdvancedGenerateBinding
 //-------------------------------------------------------------------------------------//
@@ -59,7 +57,6 @@ class AdvancedGenerateFragment : Fragment() {
     private val maximumStrengthStars1 = mutableListOf(false, false, false, false, false)
     private val minimumStrengthStars2 = mutableListOf(false, false, false, false, false)
     private val maximumStrengthStars2 = mutableListOf(false, false, false, false, false)
-
     //-------------------------------------------------------------------------------------//
 
 
@@ -177,7 +174,7 @@ class AdvancedGenerateFragment : Fragment() {
                 initList(context,selectedClubsList2,selectedCountryForFilter2,selectedDivisionForFilter2,minimumStrengthForFilter2, maximumStrengthForFilter2,selectedSexForFilter) //Ініціалізація списку команди 2 згідно фільтру
 
                 //Перевірка на розмір списку
-                if (selectedClubsList1.size > 0 && selectedClubsList2.size > 0) {
+                if (selectedClubsList1.isNotEmpty() && selectedClubsList2.isNotEmpty()) {
 
                     setClubs(checkClubs(rand(selectedClubsList1), rand(selectedClubsList2))) //Вивід команд на екран
 
@@ -191,18 +188,18 @@ class AdvancedGenerateFragment : Fragment() {
 
             }
         }
+
     }
 
     //Оновлення змінних при зміні фільтру статі
     private fun changeSexButton(man:Boolean, all:Boolean, woman:Boolean){
 
-            //Встановлення radioButton в статус "Натиснуто"
         binding.apply {
             advancedSexManChoice.isChecked = man
             advancedSexBothChoice.isChecked = all
             advancedSexWomanChoice.isChecked = woman
         }
-            //------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------//
 
         selectedSexForFilter = when {
             man -> getString(R.string.Man)
@@ -210,14 +207,15 @@ class AdvancedGenerateFragment : Fragment() {
             else -> getString(R.string.All_sex)
         }
 
-            countryListForSpinnerSex.clear()//Очистка списку країн для фільтру
-            initSpinners()//Ініціалізація випадаючих списків
-            setDefaultClubs()//Вивід даних стандартних команд у відповідні поля
+        countryListForSpinnerSex.clear()//Очистка списку країн для фільтру
+        initSpinners()//Ініціалізація випадаючих списків
+        setDefaultClubs()//Вивід даних стандартних команд у відповідні поля
 
     }
 
     //Ініціалізація змінних
     private fun initValues(){
+
 
         selectedSexForFilter = when {
             binding.advancedSexManChoice.isChecked -> getString(R.string.Man)
@@ -234,20 +232,31 @@ class AdvancedGenerateFragment : Fragment() {
         advancedListMinimumStrengthStars2 = listOf(getString(R.string.advancedLayoutSecondClubMinimumStrengthStar1), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar2), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar3), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar4), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar5))
         advancedListMaximumStrengthStars2 = listOf(getString(R.string.advancedLayoutSecondClubMaximumStrengthStar1), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar2), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar3), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar4), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar5))
         //------------------------------------------------------------------------------------------//
+
     }
 
     //Ініціалізація змінних-списків
     private fun initValuesData(){
 
         //Ініціалізація списку країн для випадаючих списків
-        countryListForSpinner = mapOf(
-            GameId.FC24.ordinal to countryListForSpinnerFifa24,
-            GameId.FIFA23.ordinal to countryListForSpinnerFifa23,
-            GameId.FIFA22.ordinal to countryListForSpinnerFifa22,
-            GameId.FC25.ordinal to countryListForSpinnerFifa25
-        ).getOrDefault(gameId, countryListForSpinnerFifa25)
+        countryListForSpinner = when (gameId) {
+            GameId.FC24.ordinal -> countryListForSpinnerFifa24
+            GameId.FIFA23.ordinal -> countryListForSpinnerFifa23
+            GameId.FIFA22.ordinal -> countryListForSpinnerFifa22
+            GameId.FC25.ordinal -> countryListForSpinnerFifa25
+            else -> countryListForSpinnerFifa25
+        }
 
-        clubList = loadClubsFromJson(context, getString(clubsJsonFile)) //Ініціалізація списку команд (витягнення з файлу json)
+        //Ініціалізація списку команд (витягнення з файлу json)
+        clubList = when (gameId) {
+            GameId.FC24.ordinal -> loadClubsFromJson(context,getString(R.string.clubs24_json))
+            GameId.FIFA23.ordinal -> loadClubsFromJson(context,getString(R.string.clubs23_json))
+            GameId.FIFA22.ordinal -> loadClubsFromJson(context,getString(R.string.clubs22_json))
+            GameId.FC25.ordinal -> loadClubsFromJson(context,getString(R.string.clubs25_json))
+            else -> loadClubsFromJson(context,getString(R.string.clubs25_json))
+        }
+
+
     }
 
     //Ініціалізація випадаючих списків
@@ -261,7 +270,8 @@ class AdvancedGenerateFragment : Fragment() {
             getString(R.string.Woman)-> countryListForSpinnerSex.addAll(countryListForSpinner.filter { it.female })
         }
 
-        if(countryListForSpinnerSex.size == 2) countryListForSpinnerSex.removeFirstOrNull()//Видалення пункту "Всі країни", якщо у списку тільки одна країна
+        if(countryListForSpinnerSex.size == 2) countryListForSpinnerSex.removeFirstOrNull() //Видалення пункту "Всі країни", якщо у списку тільки одна країна
+
 
         initSpinnersClub1() //Ініціалізація випадаючих списків для команди 1
         initSpinnersClub2() //Ініціалізація випадаючих списків для команди 2
@@ -334,7 +344,6 @@ class AdvancedGenerateFragment : Fragment() {
 
             }
         }
-
     }
 
     //Ініціалізація випадаючих списків для команди 2
@@ -398,7 +407,6 @@ class AdvancedGenerateFragment : Fragment() {
 
             }
         }
-
     }
 
     //Ініціалізація випадаючого списку для зміни версії гри
@@ -425,8 +433,6 @@ class AdvancedGenerateFragment : Fragment() {
 
             }
         }
-
-
 
     }
 
@@ -531,6 +537,8 @@ class AdvancedGenerateFragment : Fragment() {
 
     //Встановлення мінімального рейтингу команди 1 для фільтру
     private fun setMinimumStrengthClick1(starBool:Boolean,strength: Double,starCount:Int){
+
+
         strengthStarSet(binding,strength,advancedListMinimumStrengthStars1)
         minimumStrengthForFilter1 = strength
 
@@ -553,10 +561,12 @@ class AdvancedGenerateFragment : Fragment() {
         }
 
 
+
     }
 
     //Встановлення мінімального рейтингу команди 2 для фільтру
     private fun setMinimumStrengthClick2(starBool:Boolean,strength: Double,starCount:Int){
+
         strengthStarSet(binding, strength, advancedListMinimumStrengthStars2)
         minimumStrengthForFilter2 = strength
 
@@ -582,6 +592,7 @@ class AdvancedGenerateFragment : Fragment() {
 
     //Встановлення максимального рейтингу команди 1 для фільтру
     private fun setMaximumStrengthClick1(starBool:Boolean,strength: Double,starCount:Int){
+
         strengthStarSet(binding, strength, advancedListMaximumStrengthStars1)
         maximumStrengthForFilter1 = strength
 
@@ -606,10 +617,13 @@ class AdvancedGenerateFragment : Fragment() {
         }
 
 
+
+
     }
 
     //Встановлення максимального рейтингу команди 2 для фільтру
     private fun setMaximumStrengthClick2(starBool:Boolean,strength: Double,starCount:Int){
+
         strengthStarSet(binding, strength, advancedListMaximumStrengthStars2)
         maximumStrengthForFilter2 = strength
 
@@ -648,7 +662,6 @@ class AdvancedGenerateFragment : Fragment() {
 
         strengthStarSet(binding, StrengthValue.ZERO.value, advancedListFirstClubStars)
         strengthStarSet(binding, StrengthValue.ZERO.value, advancedListSecondClubStars)
-
     }
 
     //Отримання контексту Activity (ініціалізація змінної "context")

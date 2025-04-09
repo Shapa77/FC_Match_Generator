@@ -8,20 +8,12 @@ var clubList:List<ClubModel> = listOf()
 var countryListForSpinner:List<ItemForSpinner> = listOf()
 val countryListForSpinnerSex:ArrayList<ItemForSpinner> = arrayListOf()
 
-
 val gameIconsForSpinner:List<GameIconForSpinner> = listOf(
     GameIconForSpinner(R.drawable.fc25_icon),
     GameIconForSpinner(R.drawable.fc24_icon),
     GameIconForSpinner(R.drawable.fifa23_icon),
     GameIconForSpinner(R.drawable.fifa22_icon)
 )
-
-val clubsJsonFile = mapOf(
-    GameId.FC24.ordinal to R.string.clubs24_json,
-    GameId.FIFA23.ordinal to R.string.clubs23_json,
-    GameId.FIFA22.ordinal to R.string.clubs22_json,
-    GameId.FC25.ordinal to R.string.clubs25_json
-).getOrDefault(gameId, R.string.clubs25_json)
 
 var countryListForSpinnerFifa22:List<ItemForSpinner> = listOf()
 var countryListForSpinnerFifa23:List<ItemForSpinner> = listOf()

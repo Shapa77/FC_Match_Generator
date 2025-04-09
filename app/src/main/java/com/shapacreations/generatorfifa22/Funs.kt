@@ -13,6 +13,7 @@ import kotlin.random.Random
 
 
 fun rand(selectedClubsList:MutableList<ClubModel>):Int{ return if (selectedClubsList.isNotEmpty()) Random.nextInt(selectedClubsList.size) else 0 }
+
 fun changeFragment(newFragment: Fragment, gameIdLocal:Int, addToBackStack:Boolean) {
     val transaction = GetActivity.activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.FragmentContainer, newFragment)
     if (addToBackStack) transaction?.addToBackStack(null)
@@ -51,6 +52,7 @@ fun initList(context: Context, selectedClubsList: MutableList<ClubModel>, select
         }
     }
 }
+
 fun strengthStarSet(binding: ViewBinding, strength: Double, strengthStarsList: List<String>) {
     val stars = strengthStarsList.map {
         val field = binding::class.java.getDeclaredField(it)
@@ -79,6 +81,7 @@ fun strengthStarSet(binding: ViewBinding, strength: Double, strengthStarsList: L
         starImage.setImageResource(starImages[index])
     }
 }
+
 fun getStandardStringByValue(context: Context, value: String): String {
     val fields = R.string::class.java.fields
     var key = ""
@@ -104,6 +107,7 @@ fun getStandardStringByValue(context: Context, value: String): String {
         value
     }
 }
+
 fun getLocalizedStringByValue(context: Context, standardValue: String): String {
     val defaultLocale = Locale.ENGLISH
     val config = Configuration(context.resources.configuration)
@@ -128,6 +132,7 @@ fun getLocalizedStringByValue(context: Context, standardValue: String): String {
         standardValue
     }
 }
+
 fun getStrengthValue(clubStrength: Double): Double {
     return when (clubStrength) {
         StrengthValue.HALF.value -> StrengthValue.HALF.value
@@ -143,13 +148,16 @@ fun getStrengthValue(clubStrength: Double): Double {
         else -> clubStrength
     }
 }
+
 fun resetClubInfo(logo: ImageView, name: TextView, division: TextView, country: TextView) {
     logo.setImageResource(R.drawable.club_default)
     name.text = null
     division.text = null
     country.text = null
 }
+
 fun showToast(context: Context, messageId: Int) { Toast.makeText(context, context.getString(messageId), Toast.LENGTH_SHORT).show() }
+
 
 
 

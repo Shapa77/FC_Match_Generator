@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.shapacreations.generatorfifa22.databinding.FragmentGenerateBinding
 
@@ -36,6 +37,7 @@ class GenerateFragment : Fragment() {
 
     private val minimumStrengthStars = mutableListOf(false, false, false, false, false)
     private val maximumStrengthStars = mutableListOf(false, false, false, false, false)
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {return binding.root }
 
@@ -100,19 +102,24 @@ class GenerateFragment : Fragment() {
 
             advFilter.setOnClickListener { changeFragment(AdvancedGenerateFragment(), gameId,false) }
         }
-
     }
 
     private fun initValues() {
 
-        countryListForSpinner = mapOf(
-            GameId.FC24.ordinal to countryListForSpinnerFifa24,
-            GameId.FIFA23.ordinal to countryListForSpinnerFifa23,
-            GameId.FIFA22.ordinal to countryListForSpinnerFifa22,
-            GameId.FC25.ordinal to countryListForSpinnerFifa25
-        ).getOrDefault(gameId, countryListForSpinnerFifa25)
-
-        clubList = loadClubsFromJson(context, getString(clubsJsonFile))
+        countryListForSpinner = when (gameId) {
+            GameId.FC24.ordinal -> countryListForSpinnerFifa24
+            GameId.FIFA23.ordinal -> countryListForSpinnerFifa23
+            GameId.FIFA22.ordinal -> countryListForSpinnerFifa22
+            GameId.FC25.ordinal -> countryListForSpinnerFifa25
+            else -> countryListForSpinnerFifa25
+        }
+        clubList = when (gameId) {
+            GameId.FC24.ordinal -> loadClubsFromJson(context,getString(R.string.clubs24_json))
+            GameId.FIFA23.ordinal -> loadClubsFromJson(context,getString(R.string.clubs23_json))
+            GameId.FIFA22.ordinal -> loadClubsFromJson(context,getString(R.string.clubs22_json))
+            GameId.FC25.ordinal -> loadClubsFromJson(context,getString(R.string.clubs25_json))
+            else -> loadClubsFromJson(context,getString(R.string.clubs25_json))
+        }
 
         selectedSexForFilter = getString(R.string.All_sex)
 
@@ -251,6 +258,7 @@ class GenerateFragment : Fragment() {
             getString(R.string.Man)-> binding.sexImage.setImageResource(R.drawable.male_icon)
             getString(R.string.Woman)->binding.sexImage.setImageResource(R.drawable.female_icon)
         }
+
 
     }
     private fun setStrengthMinMaxStar(){
