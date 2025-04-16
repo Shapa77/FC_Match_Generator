@@ -1,21 +1,33 @@
 package com.shapacreations.generatorfifa22
 
+import android.content.Context
+import android.media.tv.AdRequest
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.ads.MobileAds
 import com.shapacreations.generatorfifa22.databinding.FragmentChoiceBinding
 
 class ChoiceFragment : Fragment() {
 
     private val binding by lazy { FragmentChoiceBinding.inflate(layoutInflater) }
 
+    private lateinit var context: Context
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View { return binding.root }
 
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.context = requireContext()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initAdBanner()
 
         val countryListForSpinnerFifa22Buff:List<ItemForSpinner> = listOf(
         ItemForSpinner(R.drawable.country_14,getString(R.string.All_countries),true),
@@ -159,10 +171,41 @@ class ChoiceFragment : Fragment() {
         setupChoiceButton(binding.choiceFc25, GameId.FC25)
 
     }
+
+    private fun setupChoiceButton(button: View, gameId: GameId) {
+        button.setOnClickListener {
+            changeFragment(GenerateFragment(), gameId.ordinal, true)
+        }
+    }
+
+
+    private fun initAdBanner(){
+        MobileAds.initialize(context)
+        val adRequest = com.google.android.gms.ads.AdRequest.Builder().build()
+        binding.choiceAdBanner.loadAd(adRequest)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.choiceAdBanner.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.choiceAdBanner.pause()
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.choiceAdBanner.destroy()
+
+    }
+
+
+
+
+
+
 }
 
-private fun setupChoiceButton(button: View, gameId: GameId) {
-    button.setOnClickListener {
-        changeFragment(GenerateFragment(), gameId.ordinal, true)
-    }
-}

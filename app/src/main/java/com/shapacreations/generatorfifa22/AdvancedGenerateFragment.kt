@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ImageView
 import android.widget.Toast
+import com.google.android.gms.ads.MobileAds
 import com.shapacreations.generatorfifa22.databinding.FragmentAdvancedGenerateBinding
 //-------------------------------------------------------------------------------------//
 
@@ -26,13 +28,13 @@ class AdvancedGenerateFragment : Fragment() {
     private lateinit var selectedCountryForFilter2:String
     private lateinit var selectedDivisionForFilter2:String
 
-    private lateinit var advancedListFirstClubStars:List<String>
-    private lateinit var advancedListSecondClubStars:List<String>
+    private lateinit var advancedListFirstClubStars:List<ImageView>
+    private lateinit var advancedListSecondClubStars:List<ImageView>
 
-    private lateinit var advancedListMinimumStrengthStars1:List<String>
-    private lateinit var advancedListMaximumStrengthStars1:List<String>
-    private lateinit var advancedListMinimumStrengthStars2:List<String>
-    private lateinit var advancedListMaximumStrengthStars2:List<String>
+    private lateinit var advancedListMinimumStrengthStars1:List<ImageView>
+    private lateinit var advancedListMaximumStrengthStars1:List<ImageView>
+    private lateinit var advancedListMinimumStrengthStars2:List<ImageView>
+    private lateinit var advancedListMaximumStrengthStars2:List<ImageView>
 
 
     private lateinit var selectedSexForFilter:String
@@ -62,12 +64,34 @@ class AdvancedGenerateFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View { return binding.root } //Стандартна функція створення фрагменту
 
+    //Отримання контексту Activity (ініціалізація змінної "context")
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.context = requireContext()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.advancedGenerateAdBanner.resume()
+    }
+    override fun onPause() {
+        super.onPause()
+        binding.advancedGenerateAdBanner.pause()
+
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.advancedGenerateAdBanner.destroy()
+
+    }
 
     //Стандартна функція, коли фрагмент створено
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initValues() //Ініціалізація змінних
         initSpinners() //Ініціалізація випадаючих списків
+        initAdBanner()
 
         binding.apply {
 
@@ -225,12 +249,16 @@ class AdvancedGenerateFragment : Fragment() {
         }
 
         //Ініціалізація списків з ідентифікаторами кнопок-зірок
-        advancedListFirstClubStars = listOf(getString(R.string.advancedFirstClubStar1), getString(R.string.advancedFirstClubStar2), getString(R.string.advancedFirstClubStar3), getString(R.string.advancedFirstClubStar4), getString(R.string.advancedFirstClubStar5))
-        advancedListSecondClubStars = listOf(getString(R.string.advancedSecondClubStar1), getString(R.string.advancedSecondClubStar2), getString(R.string.advancedSecondClubStar3), getString(R.string.advancedSecondClubStar4), getString(R.string.advancedSecondClubStar5))
-        advancedListMinimumStrengthStars1 = listOf(getString(R.string.advancedLayoutFirstClubMinimumStrengthStar1), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar2), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar3), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar4), getString(R.string.advancedLayoutFirstClubMinimumStrengthStar5))
-        advancedListMaximumStrengthStars1 = listOf(getString(R.string.advancedLayoutFirstClubMaximumStrengthStar1), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar2), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar3), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar4), getString(R.string.advancedLayoutFirstClubMaximumStrengthStar5))
-        advancedListMinimumStrengthStars2 = listOf(getString(R.string.advancedLayoutSecondClubMinimumStrengthStar1), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar2), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar3), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar4), getString(R.string.advancedLayoutSecondClubMinimumStrengthStar5))
-        advancedListMaximumStrengthStars2 = listOf(getString(R.string.advancedLayoutSecondClubMaximumStrengthStar1), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar2), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar3), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar4), getString(R.string.advancedLayoutSecondClubMaximumStrengthStar5))
+        binding.apply {
+            advancedListFirstClubStars = listOf(advancedFirstClubStar1,advancedFirstClubStar2,advancedFirstClubStar3,advancedFirstClubStar4,advancedFirstClubStar5)
+            advancedListSecondClubStars = listOf(advancedSecondClubStar1,advancedSecondClubStar2,advancedSecondClubStar3,advancedSecondClubStar4,advancedSecondClubStar5)
+            advancedListMinimumStrengthStars1 = listOf(advancedLayoutFirstClubMinimumStrengthStar1,advancedLayoutFirstClubMinimumStrengthStar2,advancedLayoutFirstClubMinimumStrengthStar3,advancedLayoutFirstClubMinimumStrengthStar4,advancedLayoutFirstClubMinimumStrengthStar5)
+            advancedListMaximumStrengthStars1 = listOf(advancedLayoutFirstClubMaximumStrengthStar1,advancedLayoutFirstClubMaximumStrengthStar2, advancedLayoutFirstClubMaximumStrengthStar3, advancedLayoutFirstClubMaximumStrengthStar4,advancedLayoutFirstClubMaximumStrengthStar5)
+            advancedListMinimumStrengthStars2 = listOf(advancedLayoutSecondClubMinimumStrengthStar1,advancedLayoutSecondClubMinimumStrengthStar2, advancedLayoutSecondClubMinimumStrengthStar3, advancedLayoutSecondClubMinimumStrengthStar4,advancedLayoutSecondClubMinimumStrengthStar5)
+            advancedListMaximumStrengthStars2 = listOf(advancedLayoutSecondClubMaximumStrengthStar1,advancedLayoutSecondClubMaximumStrengthStar2, advancedLayoutSecondClubMaximumStrengthStar3, advancedLayoutSecondClubMaximumStrengthStar4,advancedLayoutSecondClubMaximumStrengthStar5)
+
+        }
+
         //------------------------------------------------------------------------------------------//
 
     }
@@ -487,8 +515,8 @@ class AdvancedGenerateFragment : Fragment() {
                 getString(R.string.Woman)->binding.advancedSexImage.setImageResource(R.drawable.female_icon)
             }
 
-            strengthStarSet(binding,strength1,advancedListFirstClubStars)
-            strengthStarSet(binding,strength2,advancedListSecondClubStars)
+            strengthStarSet(advancedListFirstClubStars,strength1)
+            strengthStarSet(advancedListSecondClubStars,strength2)
 
         }
     }
@@ -504,8 +532,8 @@ class AdvancedGenerateFragment : Fragment() {
         minStarSet1 = selectedClubsList1.minOf { it.strength}
         maxStarSet1 = selectedClubsList1.maxOf { it.strength}
 
-        strengthStarSet(binding,minStarSet1,advancedListMinimumStrengthStars1)
-        strengthStarSet(binding,maxStarSet1,advancedListMaximumStrengthStars1)
+        strengthStarSet(advancedListMinimumStrengthStars1,minStarSet1)
+        strengthStarSet(advancedListMaximumStrengthStars1,maxStarSet1)
 
         minimumStrengthForFilter1 = minStarSet1
         maximumStrengthForFilter1 = maxStarSet1
@@ -525,8 +553,8 @@ class AdvancedGenerateFragment : Fragment() {
         minStarSet2 = selectedClubsList2.minOf { it.strength}
         maxStarSet2 = selectedClubsList2.maxOf { it.strength}
 
-        strengthStarSet(binding,minStarSet2,advancedListMinimumStrengthStars2)
-        strengthStarSet(binding,maxStarSet2,advancedListMaximumStrengthStars2)
+        strengthStarSet(advancedListMinimumStrengthStars2,minStarSet2)
+        strengthStarSet(advancedListMaximumStrengthStars2,maxStarSet2)
 
         minimumStrengthForFilter2 = minStarSet2
         maximumStrengthForFilter2 = maxStarSet2
@@ -539,25 +567,25 @@ class AdvancedGenerateFragment : Fragment() {
     private fun setMinimumStrengthClick1(starBool:Boolean,strength: Double,starCount:Int){
 
 
-        strengthStarSet(binding,strength,advancedListMinimumStrengthStars1)
+        strengthStarSet(advancedListMinimumStrengthStars1,strength)
         minimumStrengthForFilter1 = strength
 
         if (starCount in 1..5) { minimumStrengthStars1[starCount - 1] = starBool }
 
         when {
             minimumStrengthForFilter1 < minStarSet1 -> {
-                strengthStarSet(binding, minStarSet1, advancedListMinimumStrengthStars1)
+                strengthStarSet(advancedListMinimumStrengthStars1, minStarSet1)
                 minimumStrengthForFilter1 = minStarSet1
             }
             minimumStrengthForFilter1 > maxStarSet1 -> {
-                strengthStarSet(binding, maxStarSet1, advancedListMinimumStrengthStars1)
+                strengthStarSet(advancedListMinimumStrengthStars1, maxStarSet1)
                 minimumStrengthForFilter1 = maxStarSet1
             }
         }
 
         if(minimumStrengthForFilter1 > maximumStrengthForFilter1){
             maximumStrengthForFilter1 = minimumStrengthForFilter1
-            strengthStarSet(binding,maximumStrengthForFilter1,advancedListMaximumStrengthStars1)
+            strengthStarSet(advancedListMaximumStrengthStars1,maximumStrengthForFilter1)
         }
 
 
@@ -567,17 +595,17 @@ class AdvancedGenerateFragment : Fragment() {
     //Встановлення мінімального рейтингу команди 2 для фільтру
     private fun setMinimumStrengthClick2(starBool:Boolean,strength: Double,starCount:Int){
 
-        strengthStarSet(binding, strength, advancedListMinimumStrengthStars2)
+        strengthStarSet(advancedListMinimumStrengthStars2, strength)
         minimumStrengthForFilter2 = strength
 
         if (starCount in 1..5) { minimumStrengthStars2[starCount - 1] = starBool }
         when {
             minimumStrengthForFilter2 < minStarSet2 -> {
-                strengthStarSet(binding, minStarSet2, advancedListMinimumStrengthStars2)
+                strengthStarSet(advancedListMinimumStrengthStars2, minStarSet2)
                 minimumStrengthForFilter2 = minStarSet2
             }
             minimumStrengthForFilter2 > maxStarSet2 -> {
-                strengthStarSet(binding, maxStarSet2, advancedListMinimumStrengthStars2)
+                strengthStarSet(advancedListMinimumStrengthStars2, maxStarSet2)
                 minimumStrengthForFilter2 = maxStarSet2
             }
         }
@@ -585,7 +613,7 @@ class AdvancedGenerateFragment : Fragment() {
 
         if(minimumStrengthForFilter2 > maximumStrengthForFilter2){
             maximumStrengthForFilter2 = minimumStrengthForFilter2
-            strengthStarSet(binding, maximumStrengthForFilter2, advancedListMaximumStrengthStars2)
+            strengthStarSet(advancedListMaximumStrengthStars2, maximumStrengthForFilter2)
         }
 
     }
@@ -593,18 +621,18 @@ class AdvancedGenerateFragment : Fragment() {
     //Встановлення максимального рейтингу команди 1 для фільтру
     private fun setMaximumStrengthClick1(starBool:Boolean,strength: Double,starCount:Int){
 
-        strengthStarSet(binding, strength, advancedListMaximumStrengthStars1)
+        strengthStarSet(advancedListMaximumStrengthStars1, strength)
         maximumStrengthForFilter1 = strength
 
         if (starCount in 1..5) { maximumStrengthStars1[starCount - 1] = starBool }
 
         when {
             maximumStrengthForFilter1 < minStarSet1 -> {
-                strengthStarSet(binding, minStarSet1, advancedListMaximumStrengthStars1)
+                strengthStarSet(advancedListMaximumStrengthStars1, minStarSet1)
                 maximumStrengthForFilter1 = minStarSet1
             }
             maximumStrengthForFilter1 > maxStarSet1 -> {
-                strengthStarSet(binding, maxStarSet1, advancedListMaximumStrengthStars1)
+                strengthStarSet(advancedListMaximumStrengthStars1, maxStarSet1)
                 maximumStrengthForFilter1 = maxStarSet1
             }
         }
@@ -612,8 +640,8 @@ class AdvancedGenerateFragment : Fragment() {
 
         if(minimumStrengthForFilter1 > maximumStrengthForFilter1){
             minimumStrengthForFilter1 = maximumStrengthForFilter1
-            strengthStarSet(binding, maximumStrengthForFilter1, advancedListMaximumStrengthStars1)
-            strengthStarSet(binding, minimumStrengthForFilter1, advancedListMinimumStrengthStars1)
+            strengthStarSet(advancedListMaximumStrengthStars1, maximumStrengthForFilter1)
+            strengthStarSet(advancedListMinimumStrengthStars1, minimumStrengthForFilter1)
         }
 
 
@@ -624,7 +652,7 @@ class AdvancedGenerateFragment : Fragment() {
     //Встановлення максимального рейтингу команди 2 для фільтру
     private fun setMaximumStrengthClick2(starBool:Boolean,strength: Double,starCount:Int){
 
-        strengthStarSet(binding, strength, advancedListMaximumStrengthStars2)
+        strengthStarSet(advancedListMaximumStrengthStars2, strength)
         maximumStrengthForFilter2 = strength
 
         if (starCount in 1..5) { maximumStrengthStars2[starCount - 1] = starBool }
@@ -632,11 +660,11 @@ class AdvancedGenerateFragment : Fragment() {
 
         when {
             maximumStrengthForFilter2 < minStarSet2 -> {
-                strengthStarSet(binding, minStarSet2, advancedListMaximumStrengthStars2)
+                strengthStarSet(advancedListMaximumStrengthStars2, minStarSet2)
                 maximumStrengthForFilter2 = minStarSet2
             }
             maximumStrengthForFilter2 > maxStarSet2 -> {
-                strengthStarSet(binding, maxStarSet2, advancedListMaximumStrengthStars2)
+                strengthStarSet(advancedListMaximumStrengthStars2, maxStarSet2)
                 maximumStrengthForFilter2 = maxStarSet2
             }
         }
@@ -644,8 +672,8 @@ class AdvancedGenerateFragment : Fragment() {
 
         if(minimumStrengthForFilter2 > maximumStrengthForFilter2){
             minimumStrengthForFilter2 = maximumStrengthForFilter2
-            strengthStarSet(binding, maximumStrengthForFilter2, advancedListMaximumStrengthStars2)
-            strengthStarSet(binding, minimumStrengthForFilter2, advancedListMinimumStrengthStars2)
+            strengthStarSet(advancedListMaximumStrengthStars2, maximumStrengthForFilter2)
+            strengthStarSet(advancedListMinimumStrengthStars2, minimumStrengthForFilter2)
         }
     }
 
@@ -660,14 +688,16 @@ class AdvancedGenerateFragment : Fragment() {
             advancedSexImage.visibility = View.INVISIBLE
         }
 
-        strengthStarSet(binding, StrengthValue.ZERO.value, advancedListFirstClubStars)
-        strengthStarSet(binding, StrengthValue.ZERO.value, advancedListSecondClubStars)
+        strengthStarSet(advancedListFirstClubStars, StrengthValue.ZERO.value)
+        strengthStarSet(advancedListSecondClubStars, StrengthValue.ZERO.value)
     }
 
-    //Отримання контексту Activity (ініціалізація змінної "context")
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        this.context = requireContext()
+    private fun initAdBanner(){
+        MobileAds.initialize(context)
+        val adRequest = com.google.android.gms.ads.AdRequest.Builder().build()
+        binding.advancedGenerateAdBanner.loadAd(adRequest)
+
     }
+
 
 }

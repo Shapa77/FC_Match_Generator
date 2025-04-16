@@ -53,12 +53,7 @@ fun initList(context: Context, selectedClubsList: MutableList<ClubModel>, select
     }
 }
 
-fun strengthStarSet(binding: ViewBinding, strength: Double, strengthStarsList: List<String>) {
-    val stars = strengthStarsList.map {
-        val field = binding::class.java.getDeclaredField(it)
-        field.isAccessible = true
-        field.get(binding) as ImageView
-    }
+fun strengthStarSet(stars:List<ImageView>, strength: Double) {
 
     // Масив ресурсів для зірок
     val starImages = when (strength) {

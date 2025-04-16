@@ -1,18 +1,22 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+
 }
+
+
 
 android {
     namespace = "com.shapacreations.generatorfifa22"
     compileSdk = 35
 
+
     defaultConfig {
         applicationId = "com.shapacreations.generatorfifa22"
         minSdk = 24
         targetSdk = 34
-        versionCode = 100
-        versionName = "1.0.0"
+        versionCode = 20
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,9 +41,12 @@ android {
         viewBinding = true
     }
 
+
+
 }
 
 dependencies {
+    implementation(libs.play.services.ads)
     implementation(libs.app.update)
     implementation(libs.app.update.ktx)
     implementation(libs.androidx.recyclerview)

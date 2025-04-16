@@ -8,6 +8,16 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/generate_ad_banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-4934522164523732/7170505434"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/layout_clubs"
         android:layout_width="0dp"
@@ -17,7 +27,8 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/line2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/generate_ad_banner">
 
         <LinearLayout
             android:id="@+id/layout_first_club"
@@ -231,6 +242,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_clubs" />
 
+    <ImageView
+        android:id="@+id/dataBase"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_maximum_strength"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/layout_minimum_strength"
+        app:srcCompat="@drawable/db_icon" />
+
     <LinearLayout
         android:id="@+id/layout_minimum_strength"
         android:layout_width="wrap_content"
@@ -438,8 +459,8 @@
 
     <Spinner
         android:id="@+id/spinner_game"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="5dp"
         android:background="@android:color/transparent"
         android:popupBackground="@android:color/transparent"
@@ -450,10 +471,9 @@
 
     <ImageView
         android:id="@+id/adv_filter"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="5dp"
-        android:contentDescription="@string/advanced_settings"
         app:layout_constraintBottom_toBottomOf="@+id/generate_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/generate_button"
