@@ -14,9 +14,9 @@ android {
     defaultConfig {
         applicationId = "com.shapacreations.generatorfifa22"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 20
-        versionName = "1.0.1"
+        targetSdk = 35
+        versionCode = 22
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

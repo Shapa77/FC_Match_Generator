@@ -62,6 +62,7 @@
     <string name="clubs23.json" translatable="false">clubs23.json</string>
     <string name="clubs24.json" translatable="false">clubs24.json</string>
     <string name="clubs25.json" translatable="false">clubs25.json</string>
+    <string name="clubs26.json" translatable="false">clubs26.json</string>
 
     <!-- json object name -->
     <string name="name" translatable="false">name</string>
