@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes
 const val INTER_AD_ID = "ca-app-pub-4934522164523732/3447399761"
 
 
+
 var gameId = GameId.FC25.ordinal
 var clubList:List<ClubModel> = listOf()
 var countryListForSpinner:List<ItemForSpinner> = listOf()

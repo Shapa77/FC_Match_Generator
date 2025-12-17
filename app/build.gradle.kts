@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.shapacreations.generatorfifa22"
-    compileSdk = 35
+    compileSdk = 36
 
 
     defaultConfig {
@@ -58,6 +58,10 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.gson)
+    implementation(libs.androidx.lifecycle.process)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
