@@ -147,14 +147,16 @@ class GenerateFragment : Fragment() {
             GameId.FIFA23.ordinal -> countryListForSpinnerFifa23
             GameId.FIFA22.ordinal -> countryListForSpinnerFifa22
             GameId.FC25.ordinal -> countryListForSpinnerFifa25
-            else -> countryListForSpinnerFifa25
+            GameId.FC26.ordinal -> countryListForSpinnerFifa26
+            else -> countryListForSpinnerFifa26
         }
         clubList = when (gameId) {
             GameId.FC24.ordinal -> loadClubsFromJson(context,getString(R.string.clubs24_json))
             GameId.FIFA23.ordinal -> loadClubsFromJson(context,getString(R.string.clubs23_json))
             GameId.FIFA22.ordinal -> loadClubsFromJson(context,getString(R.string.clubs22_json))
             GameId.FC25.ordinal -> loadClubsFromJson(context,getString(R.string.clubs25_json))
-            else -> loadClubsFromJson(context,getString(R.string.clubs25_json))
+            GameId.FC26.ordinal -> loadClubsFromJson(context,getString(R.string.clubs26_json))
+            else -> loadClubsFromJson(context,getString(R.string.clubs26_json))
         }
 
         selectedSexForFilter = getString(R.string.All_sex)

@@ -6,12 +6,13 @@ const val INTER_AD_ID = "ca-app-pub-4934522164523732/3447399761"
 
 
 
-var gameId = GameId.FC25.ordinal
+var gameId = GameId.FC26.ordinal
 var clubList:List<ClubModel> = listOf()
 var countryListForSpinner:List<ItemForSpinner> = listOf()
 val countryListForSpinnerSex:ArrayList<ItemForSpinner> = arrayListOf()
 
 val gameIconsForSpinner:List<GameIconForSpinner> = listOf(
+    GameIconForSpinner(R.drawable.fc26_icon),
     GameIconForSpinner(R.drawable.fc25_icon),
     GameIconForSpinner(R.drawable.fc24_icon),
     GameIconForSpinner(R.drawable.fifa23_icon),
@@ -22,6 +23,7 @@ var countryListForSpinnerFifa22:List<ItemForSpinner> = listOf()
 var countryListForSpinnerFifa23:List<ItemForSpinner> = listOf()
 var countryListForSpinnerFifa24:List<ItemForSpinner> = listOf()
 var countryListForSpinnerFifa25:List<ItemForSpinner> = listOf()
+var countryListForSpinnerFifa26:List<ItemForSpinner> = listOf()
 
 
 data class RandClubs(val firstClub: Int, val secondClub: Int)
@@ -29,7 +31,7 @@ data class ClubModel(val name:String, @DrawableRes val logoId:Int, val country:S
 data class ItemForSpinner(@DrawableRes val icon:Int, val text: String, val female:Boolean)
 data class GameIconForSpinner(@DrawableRes val icon:Int)
 
-enum class GameId{ FC25,FC24,FIFA23,FIFA22 }
+enum class GameId{ FC26,FC25,FC24,FIFA23,FIFA22 }
 enum class StrengthValue(val value:Double){
     ZERO(0.0),
     HALF(0.5),
